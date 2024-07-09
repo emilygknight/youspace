@@ -1,33 +1,19 @@
 {
-  "name": "plan-my-life",
+  "name": "programming-thoughts",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",  "scripts": {
-    "render-build": "cd client && npm install && npm run build && cd .. && npm install",
+  "main": "server/server.js",
+  "scripts": {
     "start": "node server --ignore client",
-    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
+    "develop": "concurrently \"cd server && npm run start\" \"cd client && npm run dev\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^10.4.17",
-    "concurrently": "^5.1.0",
-    "daisyui": "^4.6.1",
-    "postcss": "^8.4.33",
-    "tailwindcss": "^3.4.1"
-  },
-  "dependencies": {
-    "axios": "^1.6.5",
-    "chart.js": "^4.4.1",
-    "dotenv": "^16.4.0",
-    "openai": "^4.52.3",
-    "react-chartjs-2": "^5.2.0",
-    "react-daisyui": "^5.0.0",
-    "uuid": "^9.0.1"
+    "concurrently": "^5.1.0"
   }
 }
-
