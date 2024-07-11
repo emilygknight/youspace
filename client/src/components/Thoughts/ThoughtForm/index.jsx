@@ -2,14 +2,20 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { ADD_THOUGHT } from '../../../utils/mutations';
+import { QUERY_THOUGHTS, QUERY_ME } from '../../../utils/queries';
 
-import Auth from '../../utils/auth';
+import Auth from '../../../utils/auth';
+
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+
 
 const ThoughtForm = () => {
   const [thoughtText, setThoughtText] = useState('');
-
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addThought, { error }] = useMutation
@@ -49,52 +55,56 @@ const ThoughtForm = () => {
   };
 
   return (
-    <div>
-      <h3>What's on your techy mind?</h3>
+    <Box>
+      <Typography variant="h3">Create a post</Typography>
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
+          <Typography
+            variant="body1"
+            sx={{ mb: 2, color: characterCount === 280 || error ? 'error.main' : 'text.primary' }}
           >
             Character Count: {characterCount}/280
-          </p>
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
+          </Typography>
+          <Box
+            component="form"
             onSubmit={handleFormSubmit}
+            sx={{ mb: 3 }}
           >
-            <div className="col-12 col-lg-9">
-              <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
+           <TextField
+              name="thoughtText"
+              placeholder="Here's a new thought..."
+              value={thoughtText}
+              fullWidth
+              multiline
+              rows={4}
+              variant="outlined"
+              onChange={handleChange}
+              sx={{ mb: 2 }}
+            />
 
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              fullWidth
+            >
                 Add Thought
-              </button>
-            </div>
+            </Button>
             {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
-              </div>
+              <Alert severity="error" sx={{ mt: 2 }}>
+              {error.message}
+            </Alert>
             )}
-          </form>
+          </Box>
         </>
       ) : (
-        <p>
+        <Typography variant="body1">
           You need to be logged in to share your thoughts. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
+        </Typography>
       )}
-    </div>
+    </Box>
   );
 };
 

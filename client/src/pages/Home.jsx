@@ -1,36 +1,60 @@
 import { useQuery } from '@apollo/client';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 
-import ThoughtList from '../components/ThoughtList';
-import ThoughtForm from '../components/ThoughtForm';
+import ThoughtList from '../components/Thoughts/ThoughtList';
+import ThoughtForm from '../components/Thoughts/ThoughtForm';
 
 import { QUERY_THOUGHTS } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const { loading, error, data } = useQuery(QUERY_THOUGHTS);
   const thoughts = data?.thoughts || [];
 
   return (
-    <main>
-      <div className="flex-row justify-center">
-        <div
-          className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: '1px dotted #1a1a1a' }}
+    <Box
+      component="main"
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        p: 4,
+      }}
+    >
+      <Box
+        sx={{
+          width: { xs: '100%', md: '80%' },
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 3,
+        }}
+      >
+        <Box
+          sx={{
+            width: '100%',
+            border: '1px dotted #1a1a1a',
+            p: 3,
+          }}
         >
           <ThoughtForm />
-        </div>
-        <div className="col-12 col-md-8 mb-3">
+        </Box>
+
+        <Box
+          sx={{
+            width: '100%',
+          }}
+        >
           {loading ? (
-            <div>Loading...</div>
+
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              <CircularProgress />
+            </Box>
           ) : (
-            <ThoughtList
-              thoughts={thoughts}
-              title="Some Feed for Thought(s)..."
-            />
+            <ThoughtList thoughts={thoughts} title="Thoughts..." />
           )}
-        </div>
-      </div>
-    </main>
+        </Box>
+      </Box>
+    </Box>
   );
 };
-
 export default Home;

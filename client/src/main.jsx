@@ -4,8 +4,8 @@ import './index.css'
 
 import App from './App.jsx'
 import Home from './pages/Home';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+import Signup from './pages/Login/Signup.jsx';
+import Login from './pages/Login/Login.jsx';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Error from './pages/Error';
