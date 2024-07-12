@@ -5,11 +5,8 @@ import { LOGIN_USER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Alert from '@mui/material/Alert';
+import { Box, Typography, TextField, Button, Alert } from '@mui/material';
+
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });

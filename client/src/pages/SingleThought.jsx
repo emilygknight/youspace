@@ -7,6 +7,9 @@ import CommentForm from '../components/Posts/CommentForm';
 
 import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
+// Import MUI components
+import { Box, Container, Typography, Paper, CircularProgress } from '@mui/material';
+
 const SingleThought = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { thoughtId } = useParams();
@@ -19,37 +22,36 @@ const SingleThought = () => {
   const thought = data?.thought || {};
 
   if (loading) {
-    return <div>Loading...</div>;
+    <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+    <CircularProgress />
+  </Box>
   }
   return (
-    <div className="my-3">
-      <h3 className="card-header bg-dark text-light p-2 m-0">
-        {thought.thoughtAuthor} <br />
-        <span style={{ fontSize: '1rem' }}>
-          had this thought on {thought.createdAt}
-        </span>
-      </h3>
-      <div className="bg-light py-4">
-        <blockquote
-          className="p-4"
-          style={{
-            fontSize: '1.5rem',
-            fontStyle: 'italic',
-            border: '2px dotted #1a1a1a',
-            lineHeight: '1.5',
-          }}
-        >
-          {thought.thoughtText}
-        </blockquote>
-      </div>
+    <Container>
+      <Box my={3}>
+        <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
+          <Typography variant="h5" component="h3" gutterBottom>
+            {thought.thoughtAuthor} <br />
+            <Typography variant="body2" component="span">
+              had this thought on {thought.createdAt}
+            </Typography>
+          </Typography>
+          <Box sx={{ p: 2, bgcolor: 'lightgray', border: '2px dotted #1a1a1a' }}>
+            <Typography variant="h6" component="blockquote" sx={{ fontStyle: 'italic', lineHeight: 1.5 }}>
+              {thought.thoughtText}
+            </Typography>
+          </Box>
+        </Paper>
 
-      <div className="my-5">
-        <CommentList comments={thought.comments} />
-      </div>
-      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm thoughtId={thought._id} />
-      </div>
-    </div>
+        <Box my={5}>
+          <CommentList comments={thought.comments} />
+        </Box>
+
+        <Paper elevation={3} sx={{ m: 3, p: 4, border: '1px dotted #1a1a1a' }}>
+          <CommentForm thoughtId={thought._id} />
+        </Paper>
+      </Box>
+    </Container>
   );
 };
 

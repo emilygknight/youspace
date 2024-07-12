@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+import { TextField, Button, Typography, Box, Alert } from '@mui/material';
 
 import { ADD_COMMENT } from '../../../utils/mutations';
 
@@ -41,48 +42,45 @@ const CommentForm = ({ thoughtId }) => {
   };
 
   return (
-    <div>
-      <h4>What are your thoughts on this thought?</h4>
+    <Box>
+      <Typography variant="h6" gutterBottom>
+        What are your thoughts on this thought?
+      </Typography>
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
+          <Typography
+            variant="body2"
+            color={characterCount === 280 || error ? 'error' : 'textSecondary'}
+            gutterBottom
           >
             Character Count: {characterCount}/280
-            {error && <span className="ml-2">{error.message}</span>}
-          </p>
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9">
-              <textarea
-                name="commentText"
-                placeholder="Add your comment..."
-                value={commentText}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Comment
-              </button>
-            </div>
+            {error && <Alert severity="error" style={{ marginLeft: '1rem' }}>{error.message}</Alert>}
+          </Typography>
+          <form onSubmit={handleFormSubmit}>
+            <TextField
+              name="commentText"
+              placeholder="Add your comment..."
+              value={commentText}
+              variant="outlined"
+              fullWidth
+              multiline
+              rows={4}
+              onChange={handleChange}
+              style={{ marginBottom: '1rem' }}
+            />
+            <Button variant="contained" color="primary" type="submit" fullWidth>
+              Add Comment
+            </Button>
           </form>
         </>
       ) : (
-        <p>
+        <Typography>
           You need to be logged in to share your thoughts. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
+        </Typography>
       )}
-    </div>
+    </Box>
   );
 };
 

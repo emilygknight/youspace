@@ -7,12 +7,7 @@ import { QUERY_THOUGHTS, QUERY_ME } from '../../../utils/queries';
 
 import Auth from '../../../utils/auth';
 
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Alert from '@mui/material/Alert';
-
+import { Box, Typography, TextField, Button, Alert } from '@mui/material';
 
 const ThoughtForm = () => {
   const [thoughtText, setThoughtText] = useState('');

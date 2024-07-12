@@ -1,32 +1,35 @@
+import { Box, Typography, Paper, Divider } from '@mui/material';
+
 const CommentList = ({ comments = [] }) => {
   if (!comments.length) {
-    return <h3>No Comments Yet</h3>;
+    return (
+    <Typography variant="h6" gutterBottom>
+      No Comments Yet
+    </Typography>
+   );
   }
 
   return (
     <>
-      <h3
-        className="p-5 display-inline-block"
-        style={{ borderBottom: '1px dotted #1a1a1a' }}
-      >
+      <Typography variant="h5" gutterBottom sx={{ borderBottom: '1px dotted #1a1a1a', pb: 2 }}>
         Comments
-      </h3>
-      <div className="flex-row my-4">
-        {comments &&
-          comments.map((comment) => (
-            <div key={comment._id} className="col-12 mb-3 pb-3">
-              <div className="p-3 bg-dark text-light">
-                <h5 className="card-header">
-                  {comment.commentAuthor} commented{' '}
-                  <span style={{ fontSize: '0.825rem' }}>
-                    on {comment.createdAt}
-                  </span>
-                </h5>
-                <p className="card-body">{comment.commentText}</p>
-              </div>
-            </div>
-          ))}
-      </div>
+      </Typography>
+      <Box display="flex" flexDirection="column" my={4}>
+        {comments.map((comment) => (
+          <Box key={comment._id} mb={3} pb={3}>
+            <Paper elevation={3} sx={{ p: 3, backgroundColor: 'darkgray', color: 'white' }}>
+              <Typography variant="h6" component="div">
+                {comment.commentAuthor} commented{' '}
+                <Typography variant="body2" component="span" sx={{ fontSize: '0.825rem' }}>
+                  on {comment.createdAt}
+                </Typography>
+              </Typography>
+              <Divider sx={{ my: 1 }} />
+              <Typography variant="body1">{comment.commentText}</Typography>
+            </Paper>
+          </Box>
+        ))}
+      </Box>
     </>
   );
 };

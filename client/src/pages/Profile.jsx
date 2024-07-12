@@ -12,6 +12,9 @@ import { QUERY_USER, QUERY_ME } from '../utils/queries';
 // Import authentication utility
 import Auth from '../utils/auth';
 
+// Import MUI components
+import { Box, Container, Typography, Paper, CircularProgress, Alert } from '@mui/material';
+
 const Profile = () => {
   // Extract the username parameter from the URL, if it exists
   const { username: userParam } = useParams();
@@ -35,44 +38,44 @@ const Profile = () => {
 
   // Display a loading message while the query is in progress
   if (loading) {
-    return <div>Loading...</div>;
+    return <Box display="flex" justifyContent="center" alignItems="center" height="100vh"><CircularProgress /></Box>;
   }
 
   // Display a message prompting the user to log in if no user data is found
   if (!user?.username) {
     return (
-      <h4>
+      <Container>
+        <Alert severity="warning">
         You need to be logged in to see this. Use the navigation links above to
         sign up or log in!
-      </h4>
+        </Alert>
+      </Container>
     );
   }
 // Render the user's profile, including their thoughts and a form for adding new thoughts if viewing their own profile
   return (
-    <div>
-      <div className="flex-row justify-center mb-3">
-        <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
+    <Container>
+      <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
+        <Typography variant="h4" component="h2" gutterBottom>
           Viewing {userParam ? `${user.username}'s` : 'your'} profile.
-        </h2>
+        </Typography>
 
-        <div className="col-12 col-md-10 mb-5">
+        <Box width="100%" maxWidth="md" mb={5}>
           <ThoughtList
             thoughts={user.thoughts}
             title={`${user.username}'s thoughts...`}
             showTitle={false}
             showUsername={false}
           />
-        </div>
+        </Box>
+        
         {!userParam && (
-          <div
-            className="col-12 col-md-10 mb-3 p-3"
-            style={{ border: '1px dotted #1a1a1a' }}
-          >
+          <Paper elevation={3} style={{ padding: '16px', border: '1px dotted #1a1a1a' }}>
             <ThoughtForm />
-          </div>
+          </Paper>
         )}
-      </div>
-    </div>
+      </Box>
+    </Container>
   );
 };
 
