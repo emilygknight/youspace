@@ -13,7 +13,7 @@ const ThoughtList = ({
   }
 
   return (
-    <Box>
+    <Box sx={{ flexDirection: 'row' }}>
       {showTitle && <Typography variant="h3">{title}</Typography>}
       {thoughts &&
         thoughts.map((thought) => (

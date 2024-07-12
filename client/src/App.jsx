@@ -10,6 +10,7 @@ import './App.css';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+// Defining the theme for MUI components
 const theme = createTheme({
   palette: {
     primary: {
@@ -49,13 +50,14 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+// Create Apollo Client instance with configured middleware and cache
 const client = new ApolloClient({
   // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
-
+// Main App component
 function App() {
   return (
 
