@@ -7,10 +7,27 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import './App.css';
-// import './components/Thoughts/ThoughtList/list.css';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: '#fab950',
+      main: '#f9a825',
+      dark: '#ae7519',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ffefc2',
+      main: '#ffecb3',
+      dark: '#b2a57d',
+      contrastText: '#000',
+    },
+  },
+});
 
 import { Outlet } from 'react-router-dom';
-
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -43,7 +60,7 @@ function App() {
   return (
 
     <ApolloProvider client={client}>
-      {/* <ThemeProvider theme={theme}> */}
+      <ThemeProvider theme={theme}>
       <div>
         <Header />
         <div>
@@ -51,7 +68,7 @@ function App() {
         </div>
         <Footer />
       </div>
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
     </ApolloProvider>
 
   );

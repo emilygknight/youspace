@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Box , Typography, Button } from '@mui/material/Box';
+import { Box , Typography, Button } from '@mui/material';
 
 
 const ThoughtList = ({

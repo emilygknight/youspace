@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 // import AppBar from '@mui/material/AppBar';
-import { Toolbar, Typography, Button, Box } from '@mui/material/Toolbar';
+import { Toolbar, Typography, Button, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import Auth from '../../utils/auth';

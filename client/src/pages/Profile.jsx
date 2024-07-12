@@ -54,7 +54,7 @@ const Profile = () => {
   }
 // Render the user's profile, including their thoughts and a form for adding new thoughts if viewing their own profile
   return (
-    <Container>
+    <Container maxWidth="sm">
       <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
         <Typography variant="h4" component="h2" gutterBottom>
           Viewing {userParam ? `${user.username}'s` : 'your'} profile.
