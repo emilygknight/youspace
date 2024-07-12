@@ -15,23 +15,22 @@ const Home = () => {
     <Box
       component="main"
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
         p: 4,
       }}
     >
       <Box
+        component="homepage"
         sx={{
           width: { xs: '100%', md: '80%' },
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'left',
           gap: 3,
         }}
       >
-        <Box
+        <Box component="post"
           sx={{
-            width: '100%',
+            width: '60%',
             border: '1px dotted #1a1a1a',
             p: 3,
           }}
