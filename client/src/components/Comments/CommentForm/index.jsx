@@ -7,10 +7,14 @@ import { ADD_COMMENT } from '../../../utils/mutations';
 
 import Auth from '../../../utils/auth';
 
+// Define the CommentForm component, accepting thoughtId as a prop
 const CommentForm = ({ thoughtId }) => {
+
+  // Define state variables for comment text and character count
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
+  // Define the addComment mutation hook with error handling
   const [addComment, { error }] = useMutation(ADD_COMMENT);
 
   const handleFormSubmit = async (event) => {
@@ -26,6 +30,7 @@ const CommentForm = ({ thoughtId }) => {
         },
       });
 
+      // Clear the comment text after successful submission
       setCommentText('');
     } catch (err) {
       console.error(err);
@@ -35,6 +40,7 @@ const CommentForm = ({ thoughtId }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
+    // Update comment text and character count, ensuring it does not exceed 280 characters
     if (name === 'commentText' && value.length <= 280) {
       setCommentText(value);
       setCharacterCount(value.length);

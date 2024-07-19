@@ -2,19 +2,25 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
+// Import GraphQL mutation and queries
 import { ADD_THOUGHT } from '../../../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../../../utils/queries';
 
+// Import authentication utility
 import Auth from '../../../utils/auth';
 
+// Import Material UI components
 import { Box, Typography, TextField, Button, Alert } from '@mui/material';
 
 const ThoughtForm = () => {
+  // Define state for thoughtText and characterCount
   const [thoughtText, setThoughtText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
+  // Define the addThought mutation and handle error
   const [addThought, { error }] = useMutation
   (ADD_THOUGHT, {
+    // Refetch queries to update the cache
     refetchQueries: [
       QUERY_THOUGHTS,
       'getThoughts',
@@ -23,6 +29,7 @@ const ThoughtForm = () => {
     ]
   });
 
+  // Define the handleFormSubmit function
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -34,15 +41,18 @@ const ThoughtForm = () => {
         },
       });
 
+      // Clear the form after successful submission
       setThoughtText('');
     } catch (err) {
       console.error(err);
     }
   };
 
+  // Handle input changes and update state
   const handleChange = (event) => {
     const { name, value } = event.target;
 
+    // Update thoughtText and characterCount if within the limit
     if (name === 'thoughtText' && value.length <= 280) {
       setThoughtText(value);
       setCharacterCount(value.length);
