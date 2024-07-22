@@ -4,10 +4,10 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('friends').populate('thoughts');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username }).populate('friends').populate('thoughts');
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -18,7 +18,7 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('friends').populate('thoughts');
       }
       throw AuthenticationError;
     },
@@ -112,6 +112,28 @@ const resolvers = {
         );
       }
       throw AuthenticationError;
+    },
+    addFriend: async (parent, { friendId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          context.user._id,
+          { $addToSet: { friends: friendId } },
+          { new: true }
+        ).populate('friends');
+        return updatedUser;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    removeFriend: async (parent, { friendId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          context.user._id,
+          { $pull: { friends: friendId } },
+          { new: true }
+        ).populate('friends');
+        return updatedUser;
+      }
+      throw new AuthenticationError;
     },
   },
 };

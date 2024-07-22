@@ -4,6 +4,7 @@ const typeDefs = `
     username: String
     email: String
     password: String
+    friends: [User]
     thoughts: [Thought]!
   }
 
@@ -42,6 +43,8 @@ const typeDefs = `
     addComment(thoughtId: ID!, commentText: String!): Thought
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addFriend(friendId: ID!): User
+    removeFriend(friendId: ID!): User
   }
 `;
 

@@ -8,11 +8,11 @@ const ThoughtList = ({
   showTitle = true,
   showUsername = true,
 }) => {
-  // If there are no thoughts, display a message indicating so
+  
   if (!thoughts.length) {
     return <Typography variant="h3">No Thoughts Yet</Typography>;
   }
-  // Render the list of thoughts
+
   return (
     <Box sx={{ flexDirection: 'row' }}>
       {showTitle && <Typography variant="h3">{title}</Typography>}

@@ -54,3 +54,13 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const DELETE_THOUGHT = gql`
+  mutation removeThought($thoughtId: ID!) {
+    removeThought(thoughtId: $thoughtId) {
+      _id
+      thoughtText
+      thoughtAuthor
+    }
+  }
+`;
