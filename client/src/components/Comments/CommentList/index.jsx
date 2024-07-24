@@ -1,6 +1,24 @@
 import { Box, Typography, Paper, Divider } from '@mui/material';
+import { useMutation } from '@apollo/client';
+import { DELETE_COMMENT } from '../../../utils/mutations';
 
-const CommentList = ({ comments = [] }) => {
+
+const CommentList = ({ comments = [], thoughtId }) => {
+  // Define the deleteComment mutation
+  const [deleteComment] = useMutation(DELETE_COMMENT);
+
+  // Function to handle comment deletion
+  const handleDelete = async (commentId) => {
+      try {
+        await deleteComment({
+          variables: { thoughtId, commentId },
+          refetchQueries: [{ query: QUERY_SINGLE_THOUGHT, variables: { thoughtId } }],
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
   if (!comments.length) {
     return (
     <Typography variant="h6" gutterBottom>
@@ -26,6 +44,16 @@ const CommentList = ({ comments = [] }) => {
               </Typography>
               <Divider sx={{ my: 1 }} />
               <Typography variant="body1">{comment.commentText}</Typography>
+              {(Auth.getProfile().authenticatedPerson.username === comment.commentAuthor ||
+                Auth.getProfile().authenticatedPerson.username === thoughtAuthor) && (
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => handleDelete(comment._id)}
+                >
+                  Delete Comment
+                </Button>
+              )}
             </Paper>
           </Box>
         ))}

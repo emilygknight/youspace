@@ -6,28 +6,10 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import './App.css';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-// Defining the theme for MUI components
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: '#fab950',
-      main: '#f9a825',
-      dark: '#ae7519',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ffefc2',
-      main: '#ffecb3',
-      dark: '#b2a57d',
-      contrastText: '#000',
-    },
-  },
-});
-
+// // Defining the theme for MUI components
 import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';

@@ -1,14 +1,34 @@
 import { Link } from 'react-router-dom';
 import { Box , Typography, Button } from '@mui/material';
+import { useMutation } from '@apollo/client';
+import { DELETE_THOUGHT } from '../../../utils/mutations';
+import Auth from '../../../utils/auth';
+import '../../../utils/queries';
 
-// Define the ThoughtList component with props for thoughts, title, and optional flags for showing title and username
+import { QUERY_ME, QUERY_THOUGHTS } from '../../../utils/queries';
+
+
+// Define the ThoughtList functional component with props
 const ThoughtList = ({
   thoughts,
   title,
   showTitle = true,
   showUsername = true,
 }) => {
-  
+  const [deleteThought] = useMutation(DELETE_THOUGHT);
+
+  // Function to handle thought deletion
+  const handleDelete = async (thoughtId) => {
+    try {
+      await deleteThought({
+        variables: { thoughtId },
+        refetchQueries: [{ query: QUERY_ME }, { query: QUERY_THOUGHTS }],
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (!thoughts.length) {
     return <Typography variant="h3">No Thoughts Yet</Typography>;
   }
@@ -41,6 +61,15 @@ const ThoughtList = ({
             <Box className="card-body bg-light p-2">
               <p>{thought.thoughtText}</p>
             </Box>
+            {Auth.getProfile().authenticatedPerson.username === thought.thoughtAuthor && (
+              <Button
+                variant="contained"
+                color="error"
+                onClick={() => handleDelete(thought._id)}
+              >
+                Delete
+              </Button>
+            )}
             <Link to={`/thoughts/${thought._id}`} style={{ textDecoration: 'none' }}>
             <Button variant="contained" sx={{ mt: 2, width: '100%' }}>
               Join the discussion on this thought.

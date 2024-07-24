@@ -19,7 +19,6 @@ const Home = () => {
       }}
     >
       <Box
-        component="homepage"
         sx={{
           width: { xs: '100%', md: '80%' },
           display: 'flex',
@@ -28,9 +27,9 @@ const Home = () => {
           gap: 3,
         }}
       >
-        <Box component="post"
+        <Box
           sx={{
-            width: '60%',
+            width: '70%',
             border: '1px dotted #1a1a1a',
             p: 3,
           }}

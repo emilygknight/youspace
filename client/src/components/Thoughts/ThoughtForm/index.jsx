@@ -20,7 +20,6 @@ const ThoughtForm = () => {
   // Define the addThought mutation and handle error
   const [addThought, { error }] = useMutation
   (ADD_THOUGHT, {
-    // Refetch queries to update the cache
     refetchQueries: [
       QUERY_THOUGHTS,
       'getThoughts',
@@ -28,7 +27,6 @@ const ThoughtForm = () => {
       'me'
     ]
   });
-
   // Define the handleFormSubmit function
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -41,18 +39,15 @@ const ThoughtForm = () => {
         },
       });
 
-      // Clear the form after successful submission
       setThoughtText('');
     } catch (err) {
       console.error(err);
     }
   };
 
-  // Handle input changes and update state
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    // Update thoughtText and characterCount if within the limit
     if (name === 'thoughtText' && value.length <= 280) {
       setThoughtText(value);
       setCharacterCount(value.length);

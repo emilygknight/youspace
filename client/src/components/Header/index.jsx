@@ -10,7 +10,7 @@ const HeaderContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
   padding: theme.spacing(1),
-  boxShadow: theme.shadows[4],
+  boxShadow: theme.shadows[3],
 }));
 
 const Header = () => {

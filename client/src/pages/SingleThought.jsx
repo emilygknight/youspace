@@ -44,7 +44,7 @@ const SingleThought = () => {
         </Paper>
 
         <Box my={5}>
-          <CommentList comments={thought.comments} />
+          <CommentList comments={thought.comments} thoughtId={thought._id} />
         </Box>
 
         <Paper elevation={3} sx={{ m: 3, p: 4, border: '1px dotted #1a1a1a' }}>

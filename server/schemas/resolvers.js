@@ -4,10 +4,10 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('friends').populate('thoughts');
+      return User.find().populate('thoughts');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('friends').populate('thoughts');
+      return User.findOne({ username }).populate('thoughts');
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -18,7 +18,7 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('friends').populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('thoughts');
       }
       throw AuthenticationError;
     },
@@ -80,25 +80,29 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeThought: async (parent, { thoughtId }, context) => {
+    deleteThought: async (parent, { thoughtId }, context) => {
       if (context.user) {
         const thought = await Thought.findOneAndDelete({
           _id: thoughtId,
           thoughtAuthor: context.user.username,
         });
 
+        if (!thought) {
+          throw new AuthenticationError('You can only delete your own thoughts');
+        }
+
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
+          { $pull: { thoughts: thoughtId } }
         );
 
         return thought;
       }
-      throw AuthenticationError;
+      throw new AuthenticationError('Not authenticated');
     },
-    removeComment: async (parent, { thoughtId, commentId }, context) => {
+    deleteComment: async (parent, { thoughtId, commentId }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
+        const thought = await Thought.findOneAndUpdate(
           { _id: thoughtId },
           {
             $pull: {
@@ -108,32 +112,18 @@ const resolvers = {
               },
             },
           },
-          { new: true }
+          {
+            new: true,
+          }
         );
+
+        if (!thought) {
+          throw new AuthenticationError('You can only delete your own comments');
+        }
+
+        return thought;
       }
-      throw AuthenticationError;
-    },
-    addFriend: async (parent, { friendId }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
-          context.user._id,
-          { $addToSet: { friends: friendId } },
-          { new: true }
-        ).populate('friends');
-        return updatedUser;
-      }
-      throw new AuthenticationError('Not logged in');
-    },
-    removeFriend: async (parent, { friendId }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
-          context.user._id,
-          { $pull: { friends: friendId } },
-          { new: true }
-        ).populate('friends');
-        return updatedUser;
-      }
-      throw new AuthenticationError;
+      throw new AuthenticationError('Not authenticated');
     },
   },
 };

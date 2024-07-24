@@ -4,7 +4,6 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    friends: [User]
     thoughts: [Thought]!
   }
 
@@ -41,10 +40,8 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addThought(thoughtText: String!): Thought
     addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
-    addFriend(friendId: ID!): User
-    removeFriend(friendId: ID!): User
+    deleteThought(thoughtId: ID!): Thought
+    deleteComment(thoughtId: ID!, commentId: ID!): Thought
   }
 `;
 

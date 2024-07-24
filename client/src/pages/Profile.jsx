@@ -18,6 +18,7 @@ import { Box, Container, Typography, Paper, CircularProgress, Alert } from '@mui
 const Profile = () => {
   // Extract the username parameter from the URL, if it exists
   const { username: userParam } = useParams();
+  
 
   // Use the useQuery hook to fetch user data based on the presence of the username parameter
   // If userParam exists, use QUERY_USER, otherwise use QUERY_ME
@@ -36,13 +37,19 @@ const Profile = () => {
     return <Navigate to="/me" />;
   }
 
+
   // Display a loading message while the query is in progress
   if (loading) {
     return <Box display="flex" justifyContent="center" alignItems="center" height="100vh"><CircularProgress /></Box>;
   }
 
+  console.log('Query Data:', data);
+console.log('Extracted User:', user);
+
   // Display a message prompting the user to log in if no user data is found
   if (!user?.username) {
+    console.log('No user found');
+    console.log(user);
     return (
       <Container>
         <Alert severity="warning">
