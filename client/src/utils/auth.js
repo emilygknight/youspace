@@ -3,8 +3,18 @@ import decode from 'jwt-decode';
 class AuthService {
   
   getProfile() {
-    return decode(this.getToken());
+    try {
+      const token = this.getToken();
+      if (!token || this.isTokenExpired(token)) {
+        return null;
+      }
+      return decode(token);
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
   }
+
 
   loggedIn() {
     const token = this.getToken();

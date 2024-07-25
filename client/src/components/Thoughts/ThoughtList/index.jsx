@@ -3,9 +3,7 @@ import { Box , Typography, Button } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { DELETE_THOUGHT } from '../../../utils/mutations';
 import Auth from '../../../utils/auth';
-import '../../../utils/queries';
-
-import { QUERY_ME, QUERY_THOUGHTS } from '../../../utils/queries';
+import { QUERY_ME, QUERY_THOUGHTS } from '../../../utils/queries';  // Adjust the path as needed
 
 
 // Define the ThoughtList functional component with props
@@ -16,6 +14,10 @@ const ThoughtList = ({
   showUsername = true,
 }) => {
   const [deleteThought] = useMutation(DELETE_THOUGHT);
+
+  // Validate profile
+  const profile = Auth.getProfile();
+  const username = profile?.authenticatedPerson?.username;
 
   // Function to handle thought deletion
   const handleDelete = async (thoughtId) => {
@@ -61,7 +63,7 @@ const ThoughtList = ({
             <Box className="card-body bg-light p-2">
               <p>{thought.thoughtText}</p>
             </Box>
-            {Auth.getProfile().authenticatedPerson.username === thought.thoughtAuthor && (
+            {username === thought.thoughtAuthor && (
               <Button
                 variant="contained"
                 color="error"
