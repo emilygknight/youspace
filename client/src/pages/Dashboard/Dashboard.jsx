@@ -1,9 +1,15 @@
-import Link from "next/link"
-import Image from "next/image"
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   Bell,
@@ -17,361 +23,456 @@ import {
   Settings,
   Sparkles,
   User,
-  Users,
+  Users
 } from "lucide-react"
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
-      {/* Navigation */}
-      <header className="bg-white border-b border-pink-100 sticky top-0 z-50">
-        <div className="container mx-auto py-3 px-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-pink-500" />
-              <span className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
+        {/* Navigation */}
+        <header className="bg-white border-b border-pink-100 sticky top-0 z-50">
+          <div className="container mx-auto py-3 px-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-pink-500" />
+                <span className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
                 YouSpace
               </span>
-            </div>
+              </div>
 
-            <div className="hidden md:flex items-center gap-1 flex-1 max-w-md mx-8">
-              <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Search for inspiration..."
-                  className="pl-10 bg-gray-50 border-gray-200 focus-visible:ring-pink-500"
-                />
+              <div className="hidden md:flex items-center gap-1 flex-1 max-w-md mx-8">
+                <div className="relative w-full">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Input
+                      placeholder="Search for inspiration..."
+                      className="pl-10 bg-gray-50 border-gray-200 focus-visible:ring-pink-500"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-gray-600 hover:text-pink-500 hover:bg-pink-50"
+                >
+                  <Bell className="h-5 w-5" />
+                </Button>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-gray-600 hover:text-pink-500 hover:bg-pink-50"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                </Button>
+                <Link href="/profile">
+                  <Avatar className="h-8 w-8 border-2 border-pink-200">
+                    <AvatarImage
+                        src="/placeholder.svg?height=32&width=32"
+                        alt="@username"
+                    />
+                    <AvatarFallback className="bg-pink-100 text-pink-500">
+                      US
+                    </AvatarFallback>
+                  </Avatar>
+                </Link>
               </div>
             </div>
-
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" className="text-gray-600 hover:text-pink-500 hover:bg-pink-50">
-                <Bell className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-gray-600 hover:text-pink-500 hover:bg-pink-50">
-                <MessageCircle className="h-5 w-5" />
-              </Button>
-              <Link href="/profile">
-                <Avatar className="h-8 w-8 border-2 border-pink-200">
-                  <AvatarImage src="/placeholder.svg?height=32&width=32" alt="@username" />
-                  <AvatarFallback className="bg-pink-100 text-pink-500">US</AvatarFallback>
-                </Avatar>
-              </Link>
-            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
-        {/* Sidebar */}
-        <aside className="w-full md:w-64 shrink-0">
-          <div className="bg-white rounded-xl shadow-sm p-4 sticky top-20">
-            <nav className="space-y-1">
-              <Link
-                href="/dashboard"
-                className="flex items-center gap-3 px-3 py-2 text-pink-500 bg-pink-50 rounded-lg font-medium"
-              >
-                <Home className="h-5 w-5" />
-                <span>Home</span>
-              </Link>
-              <Link
-                href="/explore"
-                className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
-              >
-                <Sparkles className="h-5 w-5" />
-                <span>Explore</span>
-              </Link>
-              <Link
-                href="/friends"
-                className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
-              >
-                <Users className="h-5 w-5" />
-                <span>Friends</span>
-              </Link>
-              <Link
-                href="/diary"
-                className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
-              >
-                <Calendar className="h-5 w-5" />
-                <span>Daily Diary</span>
-              </Link>
-              <Link
-                href="/saved"
-                className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
-              >
-                <Bookmark className="h-5 w-5" />
-                <span>Saved</span>
-              </Link>
-              <Link
-                href="/profile"
-                className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
-              >
-                <User className="h-5 w-5" />
-                <span>Profile</span>
-              </Link>
-              <Link
-                href="/settings"
-                className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
-              >
-                <Settings className="h-5 w-5" />
-                <span>Settings</span>
-              </Link>
-            </nav>
+        <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
+          {/* Sidebar */}
+          <aside className="w-full md:w-64 shrink-0">
+            <div className="bg-white rounded-xl shadow-sm p-4 sticky top-20">
+              <nav className="space-y-1">
+                <Link
+                    href="/dashboard"
+                    className="flex items-center gap-3 px-3 py-2 text-pink-500 bg-pink-50 rounded-lg font-medium"
+                >
+                  <Home className="h-5 w-5" />
+                  <span>Home</span>
+                </Link>
+                <Link
+                    href="/explore"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
+                >
+                  <Sparkles className="h-5 w-5" />
+                  <span>Explore</span>
+                </Link>
+                <Link
+                    href="/friends"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
+                >
+                  <Users className="h-5 w-5" />
+                  <span>Friends</span>
+                </Link>
+                <Link
+                    href="/diary"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
+                >
+                  <Calendar className="h-5 w-5" />
+                  <span>Daily Diary</span>
+                </Link>
+                <Link
+                    href="/saved"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
+                >
+                  <Bookmark className="h-5 w-5" />
+                  <span>Saved</span>
+                </Link>
+                <Link
+                    href="/profile"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
+                >
+                  <User className="h-5 w-5" />
+                  <span>Profile</span>
+                </Link>
+                <Link
+                    href="/settings"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
+                >
+                  <Settings className="h-5 w-5" />
+                  <span>Settings</span>
+                </Link>
+              </nav>
 
-            <div className="mt-6">
-              <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">
-                <Plus className="h-4 w-4 mr-2" />
-                Create Post
-              </Button>
-            </div>
+              <div className="mt-6">
+                <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create Post
+                </Button>
+              </div>
 
-            <div className="mt-6 p-4 bg-purple-50 rounded-lg">
-              <h3 className="font-medium text-purple-700 mb-2">Today's Prompt</h3>
-              <p className="text-sm text-gray-600 mb-3">What's one small thing that brought you joy today?</p>
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full border-purple-200 text-purple-600 hover:bg-purple-100"
-              >
-                Answer
-              </Button>
-            </div>
-          </div>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1">
-          <Tabs defaultValue="for-you" className="mb-6">
-            <TabsList className="bg-white">
-              <TabsTrigger value="for-you">For You</TabsTrigger>
-              <TabsTrigger value="friends">Friends</TabsTrigger>
-              <TabsTrigger value="trending">Trending</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="for-you" className="mt-4 space-y-6">
-              {/* Post 1 */}
-              <Card className="overflow-hidden">
-                <CardHeader className="p-4 pb-0">
-                  <div className="flex items-center gap-3">
-                    <Avatar>
-                      <AvatarImage src="/placeholder.svg?height=40&width=40" alt="@username" />
-                      <AvatarFallback className="bg-pink-100 text-pink-500">JD</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <CardTitle className="text-base">Jessica Dawson</CardTitle>
-                      <CardDescription>2 hours ago</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="p-4">
-                  <p className="mb-4">Just updated my summer vision board! ☀️ What do you think?</p>
-                  <div className="rounded-xl overflow-hidden">
-                    <Image
-                      src="/placeholder.svg?height=400&width=600"
-                      alt="Summer vision board"
-                      width={600}
-                      height={400}
-                      className="w-full object-cover"
-                    />
-                  </div>
-                </CardContent>
-                <CardFooter className="p-4 pt-0 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <Button variant="ghost" size="sm" className="text-pink-500 hover:bg-pink-50 hover:text-pink-600">
-                      <Heart className="h-4 w-4 mr-1" />
-                      124
-                    </Button>
-                    <Button variant="ghost" size="sm" className="text-gray-500 hover:bg-gray-50 hover:text-gray-600">
-                      <MessageCircle className="h-4 w-4 mr-1" />
-                      32
-                    </Button>
-                  </div>
-                  <Button variant="ghost" size="sm" className="text-gray-500 hover:bg-gray-50 hover:text-gray-600">
-                    <Bookmark className="h-4 w-4" />
-                  </Button>
-                </CardFooter>
-              </Card>
-
-              {/* Post 2 */}
-              <Card className="overflow-hidden">
-                <CardHeader className="p-4 pb-0">
-                  <div className="flex items-center gap-3">
-                    <Avatar>
-                      <AvatarImage src="/placeholder.svg?height=40&width=40" alt="@username" />
-                      <AvatarFallback className="bg-purple-100 text-purple-500">AL</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <CardTitle className="text-base">Alex Lee</CardTitle>
-                      <CardDescription>5 hours ago</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="p-4">
-                  <p className="mb-4">My aesthetic for this month is pastel dreams ✨</p>
-                  <div className="grid grid-cols-2 gap-2 rounded-xl overflow-hidden">
-                    <Image
-                      src="/placeholder.svg?height=200&width=200"
-                      alt="Pastel aesthetic 1"
-                      width={200}
-                      height={200}
-                      className="w-full object-cover rounded-lg"
-                    />
-                    <Image
-                      src="/placeholder.svg?height=200&width=200"
-                      alt="Pastel aesthetic 2"
-                      width={200}
-                      height={200}
-                      className="w-full object-cover rounded-lg"
-                    />
-                    <Image
-                      src="/placeholder.svg?height=200&width=200"
-                      alt="Pastel aesthetic 3"
-                      width={200}
-                      height={200}
-                      className="w-full object-cover rounded-lg"
-                    />
-                    <Image
-                      src="/placeholder.svg?height=200&width=200"
-                      alt="Pastel aesthetic 4"
-                      width={200}
-                      height={200}
-                      className="w-full object-cover rounded-lg"
-                    />
-                  </div>
-                </CardContent>
-                <CardFooter className="p-4 pt-0 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <Button variant="ghost" size="sm" className="text-pink-500 hover:bg-pink-50 hover:text-pink-600">
-                      <Heart className="h-4 w-4 mr-1" />
-                      87
-                    </Button>
-                    <Button variant="ghost" size="sm" className="text-gray-500 hover:bg-gray-50 hover:text-gray-600">
-                      <MessageCircle className="h-4 w-4 mr-1" />
-                      14
-                    </Button>
-                  </div>
-                  <Button variant="ghost" size="sm" className="text-gray-500 hover:bg-gray-50 hover:text-gray-600">
-                    <Bookmark className="h-4 w-4" />
-                  </Button>
-                </CardFooter>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="friends">
-              <div className="p-8 text-center text-gray-500">
-                <Users className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                <h3 className="text-lg font-medium mb-2">Friend content will appear here</h3>
-                <p className="max-w-md mx-auto mb-4">
-                  Follow your friends to see their posts and vision boards in this tab.
+              <div className="mt-6 p-4 bg-purple-50 rounded-lg">
+                <h3 className="font-medium text-purple-700 mb-2">
+                  Today&apos;s Horoscope
+                </h3>
+                <p className="text-sm text-gray-600 mb-3">
+                  What&apos;s one small thing that brought you joy today?
                 </p>
-                <Button variant="outline" className="border-pink-200 text-pink-500 hover:bg-pink-50">
-                  Find Friends
-                </Button>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="trending">
-              <div className="p-8 text-center text-gray-500">
-                <Sparkles className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                <h3 className="text-lg font-medium mb-2">Trending content will appear here</h3>
-                <p className="max-w-md mx-auto">Check back soon to see what's trending in the YouSpace community.</p>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </main>
-
-        {/* Right Sidebar */}
-        <aside className="w-full md:w-72 shrink-0">
-          <div className="bg-white rounded-xl shadow-sm p-4 sticky top-20">
-            <h3 className="font-medium text-gray-900 mb-4">Suggested for You</h3>
-
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <Avatar>
-                  <AvatarImage src="/placeholder.svg?height=40&width=40" alt="@username" />
-                  <AvatarFallback className="bg-blue-100 text-blue-500">EM</AvatarFallback>
-                </Avatar>
-                <div className="flex-1">
-                  <p className="font-medium text-sm">Emma Mitchell</p>
-                  <p className="text-xs text-gray-500">Travel enthusiast</p>
-                </div>
-                <Button variant="outline" size="sm" className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50">
-                  Follow
-                </Button>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Avatar>
-                  <AvatarImage src="/placeholder.svg?height=40&width=40" alt="@username" />
-                  <AvatarFallback className="bg-green-100 text-green-500">RJ</AvatarFallback>
-                </Avatar>
-                <div className="flex-1">
-                  <p className="font-medium text-sm">Ryan Johnson</p>
-                  <p className="text-xs text-gray-500">Art & Design</p>
-                </div>
-                <Button variant="outline" size="sm" className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50">
-                  Follow
-                </Button>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Avatar>
-                  <AvatarImage src="/placeholder.svg?height=40&width=40" alt="@username" />
-                  <AvatarFallback className="bg-purple-100 text-purple-500">SL</AvatarFallback>
-                </Avatar>
-                <div className="flex-1">
-                  <p className="font-medium text-sm">Sophia Lee</p>
-                  <p className="text-xs text-gray-500">Fashion & Style</p>
-                </div>
-                <Button variant="outline" size="sm" className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50">
-                  Follow
+                <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full border-purple-200 text-purple-600 hover:bg-purple-100"
+                >
+                  Answer
                 </Button>
               </div>
             </div>
+          </aside>
 
-            <div className="mt-6">
-              <h3 className="font-medium text-gray-900 mb-4">Trending Tags</h3>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
-                >
-                  #SummerVibes
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
-                >
-                  #AestheticGoals
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-blue-100 bg-blue-50 text-blue-500 hover:bg-blue-100"
-                >
-                  #DreamBoards
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
-                >
-                  #SelfCare
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
-                >
-                  #Inspiration
-                </Button>
+          {/* Main Content */}
+          <main className="flex-1">
+            <Tabs defaultValue="for-you" className="mb-6">
+              <TabsList className="bg-white">
+                <TabsTrigger value="for-you">For You</TabsTrigger>
+                <TabsTrigger value="friends">Friends</TabsTrigger>
+                <TabsTrigger value="trending">Trending</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="for-you" className="mt-4 space-y-6">
+                {/* Post 1 */}
+                <Card className="overflow-hidden">
+                  <CardHeader className="p-4 pb-0">
+                    <div className="flex items-center gap-3">
+                      <Avatar>
+                        <AvatarImage
+                            src="/placeholder.svg?height=40&width=40"
+                            alt="@username"
+                        />
+                        <AvatarFallback className="bg-pink-100 text-pink-500">
+                          JD
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <CardTitle className="text-base">
+                          Jessica Dawson
+                        </CardTitle>
+                        <CardDescription>2 hours ago</CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="p-4">
+                    <p className="mb-4">
+                      Just updated my summer vision board! ☀️ What do you think?
+                    </p>
+                    <div className="rounded-xl overflow-hidden">
+                      <img
+                          src="/placeholder.svg?height=400&width=600"
+                          alt="Summer vision board"
+                          width={600}
+                          height={400}
+                          className="w-full object-cover"
+                      />
+                    </div>
+                  </CardContent>
+                  <CardFooter className="p-4 pt-0 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-pink-500 hover:bg-pink-50 hover:text-pink-600"
+                      >
+                        <Heart className="h-4 w-4 mr-1" />
+                        124
+                      </Button>
+                      <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-gray-500 hover:bg-gray-50 hover:text-gray-600"
+                      >
+                        <MessageCircle className="h-4 w-4 mr-1" />
+                        32
+                      </Button>
+                    </div>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-gray-500 hover:bg-gray-50 hover:text-gray-600"
+                    >
+                      <Bookmark className="h-4 w-4" />
+                    </Button>
+                  </CardFooter>
+                </Card>
+
+                {/* Post 2 */}
+                <Card className="overflow-hidden">
+                  <CardHeader className="p-4 pb-0">
+                    <div className="flex items-center gap-3">
+                      <Avatar>
+                        <AvatarImage
+                            src="/placeholder.svg?height=40&width=40"
+                            alt="@username"
+                        />
+                        <AvatarFallback className="bg-purple-100 text-purple-500">
+                          AL
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <CardTitle className="text-base">Alex Lee</CardTitle>
+                        <CardDescription>5 hours ago</CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="p-4">
+                    <p className="mb-4">
+                      My aesthetic for this month is pastel dreams ✨
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 rounded-xl overflow-hidden">
+                      <img                          src="/placeholder.svg?height=200&width=200"
+                          alt="Pastel aesthetic 1"
+                          width={200}
+                          height={200}
+                          className="w-full object-cover rounded-lg"
+                      />
+                      <img                          src="/placeholder.svg?height=200&width=200"
+                          alt="Pastel aesthetic 2"
+                          width={200}
+                          height={200}
+                          className="w-full object-cover rounded-lg"
+                      />
+                      <img
+                          src="/placeholder.svg?height=200&width=200"
+                          alt="Pastel aesthetic 3"
+                          width={200}
+                          height={200}
+                          className="w-full object-cover rounded-lg"
+                      />
+                      <img
+                          src="/placeholder.svg?height=200&width=200"
+                          alt="Pastel aesthetic 4"
+                          width={200}
+                          height={200}
+                          className="w-full object-cover rounded-lg"
+                      />
+                    </div>
+                  </CardContent>
+                  <CardFooter className="p-4 pt-0 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-pink-500 hover:bg-pink-50 hover:text-pink-600"
+                      >
+                        <Heart className="h-4 w-4 mr-1" />
+                        87
+                      </Button>
+                      <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-gray-500 hover:bg-gray-50 hover:text-gray-600"
+                      >
+                        <MessageCircle className="h-4 w-4 mr-1" />
+                        14
+                      </Button>
+                    </div>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-gray-500 hover:bg-gray-50 hover:text-gray-600"
+                    >
+                      <Bookmark className="h-4 w-4" />
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="friends">
+                <div className="p-8 text-center text-gray-500">
+                  <Users className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                  <h3 className="text-lg font-medium mb-2">
+                    Friend content will appear here
+                  </h3>
+                  <p className="max-w-md mx-auto mb-4">
+                    Follow your friends to see their posts and vision boards in
+                    this tab.
+                  </p>
+                  <Button
+                      variant="outline"
+                      className="border-pink-200 text-pink-500 hover:bg-pink-50"
+                  >
+                    Find Friends
+                  </Button>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="trending">
+                <div className="p-8 text-center text-gray-500">
+                  <Sparkles className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                  <h3 className="text-lg font-medium mb-2">
+                    Trending content will appear here
+                  </h3>
+                  <p className="max-w-md mx-auto">
+                    Check back soon to see what&apos;s trending in the YouSpace
+                    community.
+                  </p>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </main>
+
+          {/* Right Sidebar */}
+          <aside className="w-full md:w-72 shrink-0">
+            <div className="bg-white rounded-xl shadow-sm p-4 sticky top-20">
+              <h3 className="font-medium text-gray-900 mb-4">
+                Suggested for You
+              </h3>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Avatar>
+                    <AvatarImage
+                        src="/placeholder.svg?height=40&width=40"
+                        alt="@username"
+                    />
+                    <AvatarFallback className="bg-blue-100 text-blue-500">
+                      EM
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <p className="font-medium text-sm">Emma Mitchell</p>
+                    <p className="text-xs text-gray-500">Travel enthusiast</p>
+                  </div>
+                  <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
+                  >
+                    Follow
+                  </Button>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Avatar>
+                    <AvatarImage
+                        src="/placeholder.svg?height=40&width=40"
+                        alt="@username"
+                    />
+                    <AvatarFallback className="bg-green-100 text-green-500">
+                      RJ
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <p className="font-medium text-sm">Ryan Johnson</p>
+                    <p className="text-xs text-gray-500">Art & Design</p>
+                  </div>
+                  <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
+                  >
+                    Follow
+                  </Button>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Avatar>
+                    <AvatarImage
+                        src="/placeholder.svg?height=40&width=40"
+                        alt="@username"
+                    />
+                    <AvatarFallback className="bg-purple-100 text-purple-500">
+                      SL
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <p className="font-medium text-sm">Sophia Lee</p>
+                    <p className="text-xs text-gray-500">Fashion & Style</p>
+                  </div>
+                  <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
+                  >
+                    Follow
+                  </Button>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <h3 className="font-medium text-gray-900 mb-4">Trending Tags</h3>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
+                  >
+                    #SummerVibes
+                  </Button>
+                  <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
+                  >
+                    #AestheticGoals
+                  </Button>
+                  <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-blue-100 bg-blue-50 text-blue-500 hover:bg-blue-100"
+                  >
+                    #DreamBoards
+                  </Button>
+                  <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
+                  >
+                    #SelfCare
+                  </Button>
+                  <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
+                  >
+                    #Inspiration
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-        </aside>
+          </aside>
+        </div>
       </div>
-    </div>
   )
 }

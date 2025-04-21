@@ -1,9 +1,6 @@
-import { Link } from "react-router-dom";
-
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button.jsx"
 import {
   Heart,
-  Sparkles,
   Users,
   Layout,
   Music,
@@ -11,31 +8,14 @@ import {
   ArrowRight
 } from "lucide-react"
 
+import YouSpace from "../../assets/YouSpace-1.mp4";
+import Balloon from "../../assets/ballons.mp4"
+// import Beach from "../../assets/beach.mp4"
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
-      {/* Navigation */}
-      <header className="container mx-auto py-6 px-4">
-        <nav className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-6 w-6 text-pink-500" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-              YouSpace
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="text-gray-600 hover:text-pink-500 transition-colors"
-            >
-              Login
-            </Link>
-            <Button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">
-              Sign Up
-            </Button>
-          </div>
-        </nav>
-      </header>
+
 
       {/* Hero Section */}
       <section className="container mx-auto py-16 px-4">
@@ -63,9 +43,9 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600"
+                className="text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600"
               >
-                Get Started Free
+                Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
@@ -82,22 +62,46 @@ export default function LandingPage() {
             <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-purple-200 rounded-full filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-200 rounded-full filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
             <div className="relative bg-white p-4 rounded-2xl shadow-xl rotate-3 z-10">
-              <img
-                src="/placeholder.svg?height=400&width=500"
-                alt="Vision board example"
-                width={500}
-                height={400}
-                className="rounded-lg"
-              />
+              <video
+                  alt="YouSpace video"
+                  width="640"
+                  height="360"
+                  className="drop-shadow-lg rounded-lg aspect-[3/2] object-contain lg:aspect-auto lg:size-full"
+                  loop
+                  autoPlay
+                  muted
+              >
+                <source src={YouSpace} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {/*<img*/}
+              {/*    src="https://images.pexels.com/photos/30592638/pexels-photo-30592638/free-photo-of-colorful-sticky-notes-on-a-wall.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"*/}
+              {/*    alt="Profile example"*/}
+              {/*  alt="Vision board example"*/}
+              {/*  width={500}*/}
+              {/*  height={400}*/}
+              {/*  className="rounded-lg"*/}
+              {/*/>*/}
             </div>
             <div className="absolute -bottom-10 -left-10 bg-white p-3 rounded-xl shadow-lg -rotate-6 z-20">
-              <img
-                src="/placeholder.svg?height=100&width=100"
-                alt="Profile example"
-                width={100}
-                height={100}
-                className="rounded-lg"
-              />
+              <video
+                  alt="Beach video"
+                  width={150}
+                    height={150}
+                  className="rounded-lg"
+                  loop
+                  autoPlay
+                  muted
+              >
+                <source src={Balloon} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {/*<img*/}
+              {/*    src="https://images.pexels.com/photos/30601565/pexels-photo-30601565/free-photo-of-silhouette-of-palm-trees-at-sunset-with-crescent-moon.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"*/}
+              {/*  width={100}*/}
+              {/*  height={100}*/}
+              {/*  className="rounded-lg"*/}
+              {/*/>*/}
             </div>
             <div className="absolute -top-8 -right-8 bg-white p-2 rounded-xl shadow-lg rotate-12 z-20">
               <div className="bg-pink-100 rounded-lg p-2 flex items-center gap-2">
@@ -188,46 +192,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="container mx-auto py-12 px-4 border-t border-gray-100">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="flex items-center gap-2 mb-4 md:mb-0">
-            <Sparkles className="h-5 w-5 text-pink-500" />
-            <span className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-              YouSpace
-            </span>
-          </div>
-          <div className="flex gap-8">
-            <Link
-              href="#"
-              className="text-gray-600 hover:text-pink-500 transition-colors"
-            >
-              About
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-600 hover:text-pink-500 transition-colors"
-            >
-              Privacy
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-600 hover:text-pink-500 transition-colors"
-            >
-              Terms
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-600 hover:text-pink-500 transition-colors"
-            >
-              Contact
-            </Link>
-          </div>
-        </div>
-        <div className="text-center mt-8 text-gray-500 text-sm">
-          © {new Date().getFullYear()} YouSpace. All rights reserved.
-        </div>
-      </footer>
+
     </div>
   )
 }

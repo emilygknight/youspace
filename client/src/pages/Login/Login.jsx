@@ -98,7 +98,7 @@ const Login = (props) => {
             />
             <Button
               variant="contained"
-              color="primary"
+              className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600"
               type="submit"
               fullWidth
             >
