@@ -10,35 +10,26 @@ const thoughtSchema = new Schema({
     trim: true,
   },
   thoughtAuthor: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
-    trim: true,
   },
   createdAt: {
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  comments: [
-    {
-      commentText: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      commentAuthor: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
-    },
-  ],
+},
+  {
+  toJSON: {
+    getters: true,
+  },
+  id: false,
 });
+
+thoughtSchema.virtual('commentCount').get(function() {
+      return this.comments ? this.comments.length : 0;
+    });
 
 const Thought = model('Thought', thoughtSchema);
 

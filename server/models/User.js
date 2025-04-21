@@ -17,7 +17,9 @@ const getZodiacSign = (month, day) => {
     { sign: 'Scorpio', start: '10-23', end: '11-21' },
     { sign: 'Sagittarius', start: '11-22', end: '12-21' }
   ];
+
   const birthdate = `${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+  
   return zodiacSigns.find(({ start, end }) => (birthdate >= start && birthdate <= end))?.sign || 'Unknown';
 };
 
@@ -28,6 +30,25 @@ const userSchema = new Schema({
     unique: true,
     trim: true,
   },
+  bio: {
+    type: String,
+    maxlength: 280,
+  },
+  profilePicture: {
+    type: String,
+  },
+  city: {
+    type: String,
+    maxlength: 100,
+  },
+  state: {
+      type: String,
+      maxlength: 100,
+  },
+  country: {
+      type: String,
+      maxlength: 100,
+  },
   email: {
     type: String,
     required: true,
@@ -37,7 +58,7 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 8,
   },
   birthdate: {
     type: Date,
@@ -46,12 +67,73 @@ const userSchema = new Schema({
   zodiacSign: {
     type: String,
   },
-  thoughts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Thought',
+
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+      diaries: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Diary',
+        },
+      ],
+      comments: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Comment',
+        },
+      ],
+      likes: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Like',
+        },
+      ],
+      followers: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Follow',
+        },
+      ],
+      following: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Follow',
+        },
+      ],
     },
-  ],
+    {
+      toJSON: {
+        getters: true,
+        virtuals: true,
+      },
+      id: false,
+    }
+);
+
+userSchema.virtual('thoughtCount').get(function () {
+  return this.thoughts.length;
+});
+
+userSchema.virtual('diaryCount').get(function () {
+  return this.diaries.length;
+});
+
+userSchema.virtual('commentCount').get(function () {
+  return this.comments.length;
+});
+
+userSchema.virtual('likeCount').get(function () {
+  return this.likes.length;
+});
+
+userSchema.virtual('followerCount').get(function () {
+  return this.followers.length;
+});
+
+userSchema.virtual('followingCount').get(function () {
+  return this.following.length;
 });
 
 userSchema.pre('save', async function (next) {
@@ -73,6 +155,9 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
+
+userSchema.index({ username: 1 }, { unique: true });
+userSchema.index({ email: 1 }, { unique: true });
 
 const User = model('User', userSchema);
 
