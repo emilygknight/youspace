@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 // Import GraphQL mutation and queries
-import { ADD_THOUGHT } from '../../../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../../../utils/queries';
+import {CREATE_THOUGHT} from '@/utils/mutations.js';
+import { QUERY_THOUGHTS, QUERY_ME } from '@/utils/queries.js';
 
 // Import authentication utility
 import Auth from '../../../utils/auth';
@@ -18,8 +18,8 @@ const ThoughtForm = () => {
   const [characterCount, setCharacterCount] = useState(0);
 
   // Define the addThought mutation and handle error
-  const [addThought, { error }] = useMutation
-  (ADD_THOUGHT, {
+  const [createThought, { error }] = useMutation
+  (CREATE_THOUGHT, {
     refetchQueries: [
       QUERY_THOUGHTS,
       'getThoughts',
@@ -31,7 +31,7 @@ const ThoughtForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await addThought({
+      const { data } = await createThought({
         variables: {
           thoughtText,
           // Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username 

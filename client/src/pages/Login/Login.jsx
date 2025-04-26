@@ -70,7 +70,7 @@ const Login = (props) => {
             {data ? (
           <Typography variant="body1">
             Success! You may now head{' '}
-           <Link to="/">back to the homepage.</Link>
+           <Link to="/dashboard">back to the homepage.</Link>
           </Typography>
             ) : (
       <Box

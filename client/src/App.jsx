@@ -48,7 +48,7 @@ function App() {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
       <div>
-        <Header />
+        {/*<Header />*/}
         <div>
             <Outlet />
         </div>
