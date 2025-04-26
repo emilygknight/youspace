@@ -1,22 +1,21 @@
 const typeDefs = `
   type User {
     _id: ID!
-    username: String
+    username: String!
     bio: String
     profilePicture: String
     city: String
     state: String
     country: String
-    email: String
-    password: String
+    email: String!
     birthdate: String
     zodiacSign: String
     createdAt: String!
-    diaries: [Diary]!
-    comments: [Comment]!
-    followers: [User]!
-    following: [User]!
-    thoughts: [Thought]!
+    diaries: [Diary!]!
+    comments: [Comment!]!
+    followers: [User!]!
+    following: [User!]!
+    thoughts: [Thought!]!
   }
 
   type Auth {
@@ -24,98 +23,99 @@ const typeDefs = `
     user: User!
   }
 
-type Diary {
+  type Diary {
     _id: ID!
     entryDate: String!
-    diaryAuthor: String!
+    diaryAuthor: User!
     prompt: String
     diaryText: String!
     mood: String
     stickers: [String!]
     createdAt: String!
-}
+  }
 
-type Thought {
+  type Thought {
     _id: ID!
     thoughtText: String!
-    thoughtAuthor: String!
-    comments: [Comment!]
-    commentCount: Int!
+    thoughtAuthor: User!
+    comments: [Comment!]!
+   
     likes: [Like!]!
-    likeCount: Int!
+   
     createdAt: String!
-}
+  }
 
-type Like {
+  type Like {
     _id: ID!
-    likeAuthor: String!
+    likeAuthor: User!
     thought: Thought!
     createdAt: String!
-}
+  }
 
-type Comment {
+  type Comment {
     _id: ID!
     thought: Thought!
     commentText: String!
-    commentAuthor: String!
-    createdAt: String !
-}
+    commentAuthor: User!
+    createdAt: String!
+  }
 
-type Query {
-  # User Queries
+  type Query {
+    # User Queries
     getUsers: [User!]!
-    getUser(username: String!): User 
-  
-  # Thought Queries
+    getUser(username: String!): User
+
+    # Thought Queries
     getThoughts(username: String): [Thought!]!
     getThought(thoughtId: ID!): Thought
-    getMe: User
-    
-  # Diary Queries
-    getDiaryEntries: [Diary!]!
+    getMe: User # Get authenticated user (resolver needs access to auth context)
+
+    # Diary Queries
+    getAuthenticatedUserDiaryEntries: [Diary!]!
     getDiaryEntry(diaryId: ID!): Diary
-    
-  # Comment Queries
+
+    # Comment Queries
     getComments(thoughtId: ID!): [Comment!]!
     getComment(commentId: ID!): Comment
-  
-  # Like Queries
+
+    # Like Queries
     getLikes(thoughtId: ID!): [Like!]!
-    
-  # Follow Queries
+
+    # Follow Queries
     getFollowers(userId: ID!): [User!]!
     getFollowing(userId: ID!): [User!]!
-}    
+  }
 
   type Mutation {
-    // USER
+    # USER
     createUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    updateUser(username: String, email: String, password: String): User
+    updateUser(email: String, password: String): User 
     updateUserBio(bio: String): User
     updateUserProfilePicture(profilePicture: String): User
     updateUserLocation(city: String, state: String, country: String): User
     updateUserBirthdate(birthdate: String): User
     updateUserZodiacSign(zodiacSign: String): User
-    
-    // DIARY
+    deleteUser(userId: ID!): User
+
+    # DIARY
     createDiaryEntry(entryDate: String!, diaryText: String!, prompt: String, mood: String): Diary
     updateDiaryEntry(diaryId: ID!, diaryText: String!): Diary
     deleteDiaryEntry(diaryId: ID!): Diary
-    
-    // THOUGHT
+
+    # THOUGHT
     createThought(thoughtText: String!): Thought
     deleteThought(thoughtId: ID!): Thought
-    
-    // LIKE
+
+    # LIKE
     createLike(thoughtId: ID!): Thought
     deleteLike(thoughtId: ID!): Thought
-    
-    // COMMENT
+
+    # COMMENT
     createComment(thoughtId: ID!, commentText: String!): Thought
     deleteComment(thoughtId: ID!, commentId: ID!): Thought
-    
-    // FOLLOW
+
+    # FOLLOW
     followUser(followingId: ID!): User
     unfollowUser(followingId: ID!): User
   }

@@ -1,3 +1,5 @@
+import Header from "@/components/Header/index.jsx";
+
 import { Button } from "@/components/ui/button.jsx"
 import {
   Heart,
@@ -15,7 +17,7 @@ import Balloon from "../../assets/ballons.mp4"
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
-
+    <Header/>
 
       {/* Hero Section */}
       <section className="container mx-auto py-16 px-4">

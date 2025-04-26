@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { TextField, Button, Typography, Box, Alert } from '@mui/material';
 
-import { ADD_COMMENT } from '../../../utils/mutations';
+import { CREATE_COMMENT } from '../../../utils/mutations';
 
 import Auth from '../../../utils/auth';
 
@@ -14,14 +14,14 @@ const CommentForm = ({ thoughtId }) => {
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  // Define the addComment mutation hook with error handling
-  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  // Define the createComment mutation hook with error handling
+  const [createComment, { error }] = useMutation(CREATE_COMMENT);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addComment({
+      const { data } = await createComment({
         variables: {
           thoughtId,
           commentText,

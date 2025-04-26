@@ -62,7 +62,7 @@ const userSchema = new Schema({
   },
   birthdate: {
     type: Date,
-    required: true,
+    required: false,
   },
   zodiacSign: {
     type: String,
@@ -112,6 +112,7 @@ const userSchema = new Schema({
     }
 );
 
+//Virtuals
 userSchema.virtual('thoughtCount').get(function () {
   return this.thoughts.length;
 });

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../../utils/mutations";
+import { CREATE_USER } from "@/utils/mutations.js";
 
 import Auth from "../../utils/auth";
 
@@ -11,11 +11,11 @@ import { Box, Typography, TextField, Button, Alert } from "@mui/material";
 const Signup = () => {
 	const [formState, setFormState] = useState({
 		username: "",
-		birthdate: "",
+		// birthdate: "",
 		email: "",
 		password: "",
 	});
-	const [addUser, { error, data }] = useMutation(ADD_USER);
+	const [addUser, { error, data }] = useMutation(CREATE_USER);
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -66,7 +66,7 @@ const Signup = () => {
 				</Typography>
 				{data ? (
 					<Typography variant="body1">
-						Success! You may now head <Link to="/">back to the homepage.</Link>
+						Success! Redirecting you  <Link to="/dashboard">back to the homepage.</Link>
 					</Typography>
 				) : (
 					<Box
@@ -83,18 +83,18 @@ const Signup = () => {
 							fullWidth
 							variant="outlined"
 						/>
-						<TextField
-							label="Your birthdate"
-							name="birthdate"
-							type="date"
-							value={formState.birthdate}
-							onChange={handleChange}
-							fullWidth
-							variant="outlined"
-							InputLabelProps={{
-								shrink: true,
-							}}
-						/>
+						{/*<TextField*/}
+						{/*	label="Your birthdate"*/}
+						{/*	name="birthdate"*/}
+						{/*	type="date"*/}
+						{/*	value={formState.birthdate}*/}
+						{/*	onChange={handleChange}*/}
+						{/*	fullWidth*/}
+						{/*	variant="outlined"*/}
+						{/*	InputLabelProps={{*/}
+						{/*		shrink: true,*/}
+						{/*	}}*/}
+						{/*/>*/}
 						<TextField
 							label="Your email"
 							name="email"
