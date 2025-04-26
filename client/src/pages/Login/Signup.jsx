@@ -11,7 +11,6 @@ import { Box, Typography, TextField, Button, Alert } from "@mui/material";
 const Signup = () => {
 	const [formState, setFormState] = useState({
 		username: "",
-		// birthdate: "",
 		email: "",
 		password: "",
 	});
