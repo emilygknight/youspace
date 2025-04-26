@@ -8,7 +8,6 @@ const typeDefs = `
     state: String
     country: String
     email: String!
-   
     birthdate: String
     zodiacSign: String
     createdAt: String!
@@ -97,25 +96,26 @@ const typeDefs = `
     updateUserLocation(city: String, state: String, country: String): User
     updateUserBirthdate(birthdate: String): User
     updateUserZodiacSign(zodiacSign: String): User
+    deleteUser(userId: ID!): User
 
-    # DIARY (Author is implicitly the authenticated user in resolver)
+    # DIARY
     createDiaryEntry(entryDate: String!, diaryText: String!, prompt: String, mood: String): Diary
     updateDiaryEntry(diaryId: ID!, diaryText: String!): Diary
     deleteDiaryEntry(diaryId: ID!): Diary
 
-    # THOUGHT (Author is implicitly the authenticated user in resolver)
+    # THOUGHT
     createThought(thoughtText: String!): Thought
     deleteThought(thoughtId: ID!): Thought
 
-    # LIKE (Author is implicitly the authenticated user in resolver)
+    # LIKE
     createLike(thoughtId: ID!): Thought
     deleteLike(thoughtId: ID!): Thought
 
-    # COMMENT (Author is implicitly the authenticated user in resolver)
+    # COMMENT
     createComment(thoughtId: ID!, commentText: String!): Thought
     deleteComment(thoughtId: ID!, commentId: ID!): Thought
 
-    # FOLLOW (Initiator is implicitly the authenticated user in resolver)
+    # FOLLOW
     followUser(followingId: ID!): User
     unfollowUser(followingId: ID!): User
   }

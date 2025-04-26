@@ -3,20 +3,20 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    users: async () => {
+    getUsers: async () => {
       return User.find().populate('thoughts');
     },
-    user: async (parent, { username }) => {
+    getUser: async (parent, { username }) => {
       return User.findOne({ username }).populate('thoughts');
     },
-    thoughts: async (parent, { username }) => {
+    getThoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Thought.find(params).sort({ createdAt: -1 });
     },
-    thought: async (parent, { thoughtId }) => {
+    getThought: async (parent, { thoughtId }) => {
       return Thought.findOne({ _id: thoughtId });
     },
-    me: async (parent, args, context) => {
+    getMe: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('thoughts');
       }
@@ -25,7 +25,7 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
+    createUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
@@ -47,23 +47,27 @@ const resolvers = {
 
       return { token, user };
     },
-    addThought: async (parent, { thoughtText }, context) => {
+    createThought: async (parent, { thoughtId }, context) => {
       if (context.user) {
-        const thought = await Thought.create({
-          thoughtText,
+        const thought = await Thought.findOneAndDelete({
+          _id: thoughtId,
           thoughtAuthor: context.user.username,
         });
 
+        if (!thought) {
+          throw new AuthenticationError('You can only delete your own thoughts');
+        }
+
         await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
+            { _id: context.user._id },
+            { $pull: { thoughts: thoughtId } }
         );
 
         return thought;
       }
-      throw AuthenticationError;
+      throw new AuthenticationError('Not authenticated');
     },
-    addComment: async (parent, { thoughtId, commentText }, context) => {
+    createComment: async (parent, { thoughtId, commentText }, context) => {
       if (context.user) {
         return Thought.findOneAndUpdate(
           { _id: thoughtId },
@@ -80,41 +84,21 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    deleteThought: async (parent, { thoughtId }, context) => {
-      if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
-        });
-
-        if (!thought) {
-          throw new AuthenticationError('You can only delete your own thoughts');
-        }
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { thoughts: thoughtId } }
-        );
-
-        return thought;
-      }
-      throw new AuthenticationError('Not authenticated');
-    },
     deleteComment: async (parent, { thoughtId, commentId }, context) => {
       if (context.user) {
         const thought = await Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
+            { _id: thoughtId },
+            {
+              $pull: {
+                comments: {
+                  _id: commentId,
+                  commentAuthor: context.user.username,
+                },
               },
             },
-          },
-          {
-            new: true,
-          }
+            {
+              new: true,
+            }
         );
 
         if (!thought) {
