@@ -1,9 +1,18 @@
-import React, {Component} from 'react';
-import {Bell, MessageCircle, Search, Sparkles} from "lucide-react";
+import {Component} from 'react';
+import {Bell, MessageCircle, Search, Sparkles, UserRound} from "lucide-react";
 import {Input} from "@/components/ui/input.jsx";
 import {Button} from "@/components/ui/button.jsx";
 import {Link} from "react-router-dom";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar.jsx";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 class Headertwo extends Component {
     render() {
@@ -43,17 +52,29 @@ class Headertwo extends Component {
                             >
                                 <MessageCircle className="h-5 w-5" />
                             </Button>
-                            <Link href="/profile">
-                                <Avatar className="h-8 w-8 border-2 border-pink-200">
-                                    <AvatarImage
-                                        src="/placeholder.svg?height=32&width=32"
-                                        alt="@username"
-                                    />
-                                    <AvatarFallback className="bg-pink-100 text-pink-500">
-                                        US
-                                    </AvatarFallback>
-                                </Avatar>
-                            </Link>
+
+                            <DropdownMenu className="">
+                                <DropdownMenuTrigger>
+                                    <Avatar className="h-8 w-8 border-2 border-pink-200">
+                                        <AvatarImage
+                                            src="/placeholder.svg?height=32&width=32"
+                                            alt="@username"
+                                        />
+                                        <AvatarFallback className="bg-pink-100 text-pink-500">
+                                            <UserRound />
+                                        </AvatarFallback>
+                                    </Avatar>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuSeparator />
+                                    <Link href="/profile">
+                                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                                    </Link>
+                                    <DropdownMenuItem>Edit Profile</DropdownMenuItem>
+                                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+
                         </div>
                     </div>
                 </div>
