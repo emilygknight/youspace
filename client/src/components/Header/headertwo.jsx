@@ -41,21 +41,21 @@ class Headertwo extends Component {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="text-gray-600 hover:text-pink-500 hover:bg-pink-50"
+                                className="text-gray-600 hover:text-pink-500 hover:bg-pink-50 cursor-pointer"
                             >
                                 <Bell className="h-5 w-5" />
                             </Button>
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="text-gray-600 hover:text-pink-500 hover:bg-pink-50"
+                                className="text-gray-600 hover:text-pink-500 hover:bg-pink-50 cursor-pointer"
                             >
                                 <MessageCircle className="h-5 w-5" />
                             </Button>
 
                             <DropdownMenu className="">
                                 <DropdownMenuTrigger>
-                                    <Avatar className="h-8 w-8 border-2 border-pink-200">
+                                    <Avatar className="h-8 w-8 border-2 border-pink-200 cursor-pointer">
                                         <AvatarImage
                                             src="/placeholder.svg?height=32&width=32"
                                             alt="@username"
@@ -68,7 +68,9 @@ class Headertwo extends Component {
                                 <DropdownMenuContent>
                                     <DropdownMenuSeparator />
                                     <Link href="/profile">
-                                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                                        <DropdownMenuItem className="cursor-pointer">
+                                            Profile
+                                        </DropdownMenuItem>
                                     </Link>
                                     <DropdownMenuItem>Edit Profile</DropdownMenuItem>
                                     <DropdownMenuItem>Settings</DropdownMenuItem>

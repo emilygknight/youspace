@@ -26,6 +26,8 @@ import {
   Users
 } from "lucide-react"
 import Headertwo from "@/components/Header/headertwo.jsx";
+import Horoscope from "@/components/Horoscope/index.jsx";
+
 
 export default function Dashboard() {
   return (
@@ -38,49 +40,49 @@ export default function Dashboard() {
             <div className="bg-white rounded-xl shadow-sm p-4 sticky top-20">
               <nav className="space-y-1">
                 <Link
-                    href="/dashboard"
+                    to="/dashboard"
                     className="flex items-center gap-3 px-3 py-2 text-pink-500 bg-pink-50 rounded-lg font-medium"
                 >
                   <Home className="h-5 w-5" />
                   <span>Home</span>
                 </Link>
                 <Link
-                    href="/explore"
+                    to="/explore"
                     className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
                 >
                   <Sparkles className="h-5 w-5" />
                   <span>Explore</span>
                 </Link>
                 <Link
-                    href="/friends"
+                    to="/friends"
                     className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
                 >
                   <Users className="h-5 w-5" />
                   <span>Friends</span>
                 </Link>
                 <Link
-                    href="/diary"
+                    to="/diary"
                     className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
                 >
                   <Calendar className="h-5 w-5" />
                   <span>Daily Diary</span>
                 </Link>
                 <Link
-                    href="/saved"
+                    to="/saved"
                     className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
                 >
                   <Bookmark className="h-5 w-5" />
                   <span>Saved</span>
                 </Link>
                 <Link
-                    href="/profile"
+                    to="/profile"
                     className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
                 >
                   <User className="h-5 w-5" />
                   <span>Profile</span>
                 </Link>
                 <Link
-                    href="/settings"
+                    to="/settings"
                     className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
                 >
                   <Settings className="h-5 w-5" />
@@ -89,7 +91,7 @@ export default function Dashboard() {
               </nav>
 
               <div className="mt-6">
-                <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">
+                <Button className="w-full text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">
                   <Plus className="h-4 w-4 mr-2" />
                   Create Post
                 </Button>
@@ -111,6 +113,9 @@ export default function Dashboard() {
                   Answer
                 </Button>
               </div>
+
+              <div className="mt-6 p-4 bg-purple-50 rounded-lg">
+              </div>
             </div>
           </aside>
 
@@ -118,9 +123,12 @@ export default function Dashboard() {
           <main className="flex-1">
             <Tabs defaultValue="for-you" className="mb-6">
               <TabsList className="bg-white">
-                <TabsTrigger value="for-you">For You</TabsTrigger>
-                <TabsTrigger value="friends">Friends</TabsTrigger>
-                <TabsTrigger value="trending">Trending</TabsTrigger>
+                <TabsTrigger value="for-you"   className="text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg data-[state=active]:text-pink-700 data-[state=active]:bg-pink-100 data-[state=active]:font-semibold data-[state=active]:shadow-sm"
+                > For You</TabsTrigger>
+                <TabsTrigger value="friends"   className="text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg data-[state=active]:text-pink-700 data-[state=active]:bg-pink-100 data-[state=active]:font-semibold data-[state=active]:shadow-sm"
+                > Friends</TabsTrigger>
+                <TabsTrigger value="trending" className="text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg data-[state=active]:text-pink-700 data-[state=active]:bg-pink-100 data-[state=active]:font-semibold data-[state=active]:shadow-sm"
+                > Trending</TabsTrigger>
               </TabsList>
 
               <TabsContent value="for-you" className="mt-4 space-y-6">
@@ -306,15 +314,7 @@ export default function Dashboard() {
 
           {/* Right Sidebar */}
           <aside className="w-full md:w-72 shrink-0">
-            <div className="mt-6 mb-4 p-4 bg-white rounded-lg">
-              <h3 className="font-medium text-purple-700 mb-2">
-                Today&apos;s Horoscope
-              </h3>
-              <p className="text-sm text-gray-600 mb-3">
-                What&apos;s one small thing that brought you joy today?
-              </p>
-
-            </div>
+            <Horoscope />
             <div className="bg-white rounded-xl shadow-sm p-4 sticky top-20">
               <h3 className="font-medium text-gray-900 mb-4">
                 Suggested for You
