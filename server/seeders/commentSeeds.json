@@ -1,20 +1,20 @@
 [
   {
-    "thought": { "$oid": "1" },
+    "thought": "When you don't create things, you become defined by your tastes rather than ability. Your tastes only narrow & exclude people. So create.",
     "commentText": "Great quote!",
-    "commentAuthor": { "$oid": "2" },
+    "commentAuthor": "maxkanatalexander",
     "createdAt": "2025-04-26T12:30:00.000Z"
   },
   {
-    "thought": { "$oid": "2" },
+    "thought": "Walking on water and developing software from a specification are easy if both are frozen.",
     "commentText": "So true!",
-    "commentAuthor": { "$oid": "1" },
+    "commentAuthor": "alankay",
     "createdAt": "2025-04-25T17:30:00.000Z"
   },
   {
-    "thought": { "$oid": "1" },
+    "thought": "I'm not a great programmer; I'm just a good programmer with great habits.",
     "commentText": "I agree completely.",
-    "commentAuthor": { "$oid": "3" },
+    "commentAuthor": "carhoare",
     "createdAt": "2025-04-26T13:00:00.000Z"
   }
 ]

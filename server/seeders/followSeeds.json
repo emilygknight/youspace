@@ -1,0 +1,42 @@
+[
+  {
+    "follower": "briankernighan",
+    "following": "maxkanatalexander"
+  },
+  {
+    "follower": "briankernighan",
+    "following": "whytheluckystiff"
+  },
+  {
+    "follower": "maxkanatalexander",
+    "following": "kentbeck"
+  },
+  {
+    "follower": "whytheluckystiff",
+    "following": "alankay"
+  },
+  {
+    "follower": "kentbeck",
+    "following": "edwardvberard"
+  },
+  {
+    "follower": "alankay",
+    "following": "carhoare"
+  },
+  {
+    "follower": "carhoare",
+    "following": "davidthomas"
+  },
+  {
+    "follower": "davidthomas",
+    "following": "donaldknuth"
+  },
+  {
+    "follower": "donaldknuth",
+    "following": "lernantino"
+  },
+  {
+    "follower": "lernantino",
+    "following": "briankernighan"
+  }
+]

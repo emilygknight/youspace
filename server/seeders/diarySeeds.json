@@ -1,7 +1,7 @@
 [
   {
     "entryDate": "2025-04-26",
-    "diaryAuthor": { "$oid": "1" },
+    "diaryAuthor": "kentbeck",
     "prompt": "What are you grateful for today?",
     "diaryText": "Today I'm feeling grateful for the sunshine and the opportunity to work on this project.",
     "mood": "Happy",
@@ -10,7 +10,7 @@
   },
   {
     "entryDate": "2025-04-25",
-    "diaryAuthor": { "$oid": "2" },
+    "diaryAuthor": "maxkanatalexander",
     "prompt": "Describe a moment of joy you experienced recently.",
     "diaryText": "I had a great laugh with a friend yesterday while reminiscing about old times.",
     "mood": "Joyful",
@@ -19,7 +19,7 @@
   },
   {
     "entryDate": "2025-04-27",
-    "diaryAuthor": { "$oid": "1" },
+    "diaryAuthor": "whytheluckystiff",
     "prompt": "Reflect on a challenge you faced and how you overcame it.",
     "diaryText": "I was stuck on a coding problem this morning, but after taking a break and coming back with fresh eyes, I found the solution.",
     "mood": "Focused",
