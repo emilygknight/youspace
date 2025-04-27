@@ -58,3 +58,11 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const GET_JOURNAL_PROMPT = gql`
+  query getJournalPrompt {
+    getJournalPrompt {
+      prompt
+    }
+  }
+`;

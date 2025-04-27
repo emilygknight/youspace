@@ -222,7 +222,6 @@ export default function LandingPage() {
         <InfiniteImageCarousel images={images} speed={30} />
       </section>
 
-
       {/* CTA Section */}
       <section className="container mx-auto py-20 px-4">
         <div className="bg-gradient-to-r from-pink-500 to-purple-500 rounded-3xl p-12 text-center text-white">

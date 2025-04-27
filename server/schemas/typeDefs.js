@@ -35,6 +35,10 @@ const typeDefs = `
     stickers: [String!]
     createdAt: String!
   }
+  
+  type JournalPromptResponse {
+    prompt: String!
+  }
 
   type Thought {
     _id: ID!
@@ -76,7 +80,8 @@ const typeDefs = `
     # Diary Queries
     getAuthenticatedUserDiaryEntries: [Diary!]!
     getDiaryEntry(diaryId: ID!): Diary
-
+    getJournalPrompt: JournalPromptResponse!
+ 
     # Comment Queries
     getComments(thoughtId: ID!): [Comment!]!
     getComment(commentId: ID!): Comment
@@ -88,6 +93,7 @@ const typeDefs = `
     getFollowers(userId: ID!): [User!]!
     getFollowing(userId: ID!): [User!]!
   }
+  
 
   type Mutation {
     # USER
