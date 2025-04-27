@@ -9,17 +9,30 @@ db.once('open', async () => {
     await cleanDB('Thought', 'thoughts');
     await cleanDB('User', 'users');
 
-    await User.create(userSeeds);
+    const createdUsers = await User.create(userSeeds);
 
-    for (let i = 0; i < thoughtSeeds.length; i++) {
-      const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
-      const user = await User.findOneAndUpdate(
-        { username: thoughtAuthor },
-        {
-          $addToSet: {
-            thoughts: _id,
-          },
-        }
+    for (const thought of thoughtSeeds) {
+      const user = createdUsers.find(
+          (user) => user.username === thought.thoughtAuthor
+      );
+
+      if (!user) {
+        console.error(`Could not find user: ${thought.thoughtAuthor}`);
+        continue;
+      }
+
+      const createdThought = await Thought.create({
+        thoughtText: thought.thoughtText,
+        thoughtAuthor: user._id,
+      });
+
+      await User.findOneAndUpdate(
+          { _id: user._id },
+          {
+            $addToSet: {
+              thoughts: createdThought._id,
+            },
+          }
       );
     }
   } catch (err) {

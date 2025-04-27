@@ -1,0 +1,20 @@
+[
+  {
+    "thought": { "$oid": "1" },
+    "commentText": "Great quote!",
+    "commentAuthor": { "$oid": "2" },
+    "createdAt": "2025-04-26T12:30:00.000Z"
+  },
+  {
+    "thought": { "$oid": "2" },
+    "commentText": "So true!",
+    "commentAuthor": { "$oid": "1" },
+    "createdAt": "2025-04-25T17:30:00.000Z"
+  },
+  {
+    "thought": { "$oid": "1" },
+    "commentText": "I agree completely.",
+    "commentAuthor": { "$oid": "3" },
+    "createdAt": "2025-04-26T13:00:00.000Z"
+  }
+]

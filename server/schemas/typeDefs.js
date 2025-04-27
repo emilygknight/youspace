@@ -4,6 +4,8 @@ const typeDefs = `
     username: String!
     bio: String
     profilePicture: String
+    firstName: String
+    lastName: String
     city: String
     state: String
     country: String

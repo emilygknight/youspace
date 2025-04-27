@@ -54,10 +54,10 @@ export default function LandingPage() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/examples")}
                 size="lg"
                 variant="outline"
-                className="border-pink-200 text-pink-500 hover:bg-pink-50 cursor-progress"
+                className="border-pink-200 text-pink-500 hover:bg-pink-50 cursor-pointer"
               >
                 See Examples
               </Button>

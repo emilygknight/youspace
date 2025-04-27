@@ -1,0 +1,29 @@
+[
+  {
+    "entryDate": "2025-04-26",
+    "diaryAuthor": { "$oid": "1" },
+    "prompt": "What are you grateful for today?",
+    "diaryText": "Today I'm feeling grateful for the sunshine and the opportunity to work on this project.",
+    "mood": "Happy",
+    "stickers": ["sun", "heart"],
+    "createdAt": "2025-04-26T10:00:00.000Z"
+  },
+  {
+    "entryDate": "2025-04-25",
+    "diaryAuthor": { "$oid": "2" },
+    "prompt": "Describe a moment of joy you experienced recently.",
+    "diaryText": "I had a great laugh with a friend yesterday while reminiscing about old times.",
+    "mood": "Joyful",
+    "stickers": ["laughing", "star"],
+    "createdAt": "2025-04-25T14:30:00.000Z"
+  },
+  {
+    "entryDate": "2025-04-27",
+    "diaryAuthor": { "$oid": "1" },
+    "prompt": "Reflect on a challenge you faced and how you overcame it.",
+    "diaryText": "I was stuck on a coding problem this morning, but after taking a break and coming back with fresh eyes, I found the solution.",
+    "mood": "Focused",
+    "stickers": ["lightbulb", "check"],
+    "createdAt": "2025-04-27T09:15:00.000Z"
+  }
+]

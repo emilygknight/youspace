@@ -37,6 +37,14 @@ const userSchema = new Schema({
   profilePicture: {
     type: String,
   },
+  firstName: {
+  type: String,
+  maxlength: 100,
+  },
+  lastName: {
+  type: String,
+  maxlength: 100,
+  },
   city: {
     type: String,
     maxlength: 100,
