@@ -64,16 +64,16 @@ const Index = () => {
         return (
             <div className="mt-6 mb-4 p-4 bg-white rounded-lg">
                 <h3 className="font-medium text-purple-700 mb-2">
-                    Today&apos;s Horoscope for {horoscopeData.sign.charAt(0).toUpperCase() + horoscopeData.sign.slice(1)}
+                    Today&apos;s Horoscope for <span>{horoscopeData.sign.charAt(0).toUpperCase() + horoscopeData.sign.slice(1)}</span>
                 </h3>
                 {/*<p className="text-sm text-gray-600 mb-1">Date: {horoscopeData.current_date}</p>*/}
-                <p className="text-sm text-gray-600 mb-1">Description: {horoscopeData.description}</p>
-                {/*<p className="text-sm text-gray-600 mb-1">Compatibility: {horoscopeData.compatibility}</p>*/}
-                <p className="text-sm text-gray-600 mb-1">Mood: {horoscopeData.mood}</p>
-                <p className="text-sm text-gray-600 mb-1">Color: {horoscopeData.color}</p>
-                <p className="text-sm text-gray-600 mb-1">Lucky Number: {horoscopeData.lucky_number}</p>
-                {/*<p className="text-sm text-gray-600 mb-1">Lucky Time: {horoscopeData.lucky_time}</p>*/}
-                {/*<p className="text-sm text-gray-600 mb-1">Date Range: {horoscopeData.date_range}</p>*/}
+                <p className="text-sm text-gray-600 mb-1"><span className="font-bold text-pink-700">Description:</span> {horoscopeData.description}</p>
+                {/*<p className="text-sm text-gray-600 mb-1"><span className="font-bold text-pink-700">Compatibility:</span>  {horoscopeData.compatibility}</p>*/}
+                <p className="text-sm text-gray-600 mb-1"><span className=" font-bold text-pink-700">Mood:</span>  {horoscopeData.mood}</p>
+                <p className="text-sm text-gray-600 mb-1"><span className=" font-bold text-pink-700">Color:</span>  {horoscopeData.color}</p>
+                <p className="text-sm text-gray-600 mb-1"><span className=" font-bold text-pink-700">Lucky Number:</span>  {horoscopeData.lucky_number}</p>
+                {/*<p className="text-sm text-gray-600 mb-1"><span className="font-bold text-pink-700">Lucky Time:</span>  {horoscopeData.lucky_time}</p>*/}
+                {/*<p className="text-sm text-gray-600 mb-1"><span className="font-bold text-pink-700">Date Range:</span>  {horoscopeData.date_range}</p>*/}
             </div>
         );
     }
