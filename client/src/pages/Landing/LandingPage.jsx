@@ -46,16 +46,18 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
+                onClick={() => navigate("/signup")}
                 size="lg"
-                className="text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600"
+                className="text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 cursor-pointer"
               >
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
+                onClick={() => navigate("/")}
                 size="lg"
                 variant="outline"
-                className="border-pink-200 text-pink-500 hover:bg-pink-50"
+                className="border-pink-200 text-pink-500 hover:bg-pink-50 cursor-progress"
               >
                 See Examples
               </Button>
