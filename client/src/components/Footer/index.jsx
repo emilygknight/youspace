@@ -14,31 +14,33 @@ const Footer = () => {
     <div className="flex flex-col md:flex-row justify-between items-center">
       <div className="flex items-center gap-2 mb-4 md:mb-0">
         <Sparkles className="h-5 w-5 text-pink-500" />
-        <span className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+        <Link to={"/"} className="text-2xl font-bold text-gray-800 hover:text-pink-500 transition-colors">
+            <span className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
               YouSpace
             </span>
+        </Link>
       </div>
       <div className="flex gap-8">
         <Link
-            href="#"
+            to="#"
             className="text-gray-600 hover:text-pink-500 transition-colors"
         >
           About
         </Link>
         <Link
-            href="#"
+            to="#"
             className="text-gray-600 hover:text-pink-500 transition-colors"
         >
           Privacy
         </Link>
         <Link
-            href="#"
+            to="#"
             className="text-gray-600 hover:text-pink-500 transition-colors"
         >
           Terms
         </Link>
         <Link
-            href="#"
+            to="#"
             className="text-gray-600 hover:text-pink-500 transition-colors"
         >
           Contact
@@ -49,7 +51,7 @@ const Footer = () => {
       © {new Date().getFullYear()} YouSpace. All rights reserved.
     </div>
     <div className="text-center mt-8 text-gray-500 text-xs">
-      Made with {"  "} <HeartIcon size={24} className="py-1" style={{ display: 'inline-block', verticalAlign: 'middle' }} /> {"  "} by Emily Knight.
+      Made with {"  "} <HeartIcon size={24} className="py-1" style={{ display: 'inline-block', verticalAlign: 'middle' }} /> {"  "} by Emily Knight & Drew Tullos.
     </div>
 
   </footer>

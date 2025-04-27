@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "@/utils/mutations.js";
@@ -15,6 +15,7 @@ const Signup = () => {
 		password: "",
 	});
 	const [addUser, { error, data }] = useMutation(CREATE_USER);
+	const navigate = useNavigate();
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -34,7 +35,9 @@ const Signup = () => {
 				variables: { ...formState },
 			});
 
-			Auth.login(data.addUser.token);
+			console.log("TEST", data);
+			Auth.login(data.createUser.token);
+			navigate("/dashboard");
 		} catch (e) {
 			console.error(e);
 		}
@@ -65,7 +68,7 @@ const Signup = () => {
 				</Typography>
 				{data ? (
 					<Typography variant="body1">
-						Success! Redirecting you  <Link to="/dashboard">back to the homepage.</Link>
+						Success! Redirecting you  <Link to="/dashboard">back to the <span className="text-pink-400">homepage</span>.</Link>
 					</Typography>
 				) : (
 					<Box

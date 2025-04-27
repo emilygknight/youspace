@@ -9,6 +9,9 @@ const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
+// Import the GoogleGenAI class from the Google GenAI package
+// import {GoogleGenAI} from '@google/genai';
+
 // Load engironment variables from .env file
 require('dotenv').config();
 
@@ -19,6 +22,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
+// const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+// const ai = new GoogleGenAI({apiKey: GEMINI_API_KEY});
+
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {

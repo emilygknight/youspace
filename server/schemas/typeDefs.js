@@ -59,6 +59,7 @@ const typeDefs = `
     commentAuthor: User!
     createdAt: String!
   }
+  
 
   type Query {
     # User Queries

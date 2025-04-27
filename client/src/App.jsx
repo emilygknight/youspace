@@ -11,7 +11,7 @@ import theme from './theme';
 
 // // Defining the theme for MUI components
 import { Outlet } from 'react-router-dom';
-import Header from './components/Header';
+// import Header from './components/Header/HeaderOne/index.jsx';
 import Footer from './components/Footer';
 
 

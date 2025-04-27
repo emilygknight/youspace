@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
+
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 
@@ -12,7 +13,9 @@ const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
-  // update state based on form input changes
+  const navigate = useNavigate();
+
+    // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -32,6 +35,7 @@ const Login = (props) => {
       });
 
       Auth.login(data.login.token);
+        navigate("/dashboard");
     } catch (e) {
       console.error(e);
     }
@@ -70,7 +74,7 @@ const Login = (props) => {
             {data ? (
           <Typography variant="body1">
             Success! You may now head{' '}
-           <Link to="/dashboard">back to the homepage.</Link>
+           <Link to="/dashboard">back to the <span className="text-pink-400">homepage</span>.</Link>
           </Typography>
             ) : (
       <Box

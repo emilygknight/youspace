@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   Card,
@@ -12,28 +11,26 @@ import {
 } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
-  Bell,
   Bookmark,
   Calendar,
   Heart,
   Home,
   MessageCircle,
   Plus,
-  Search,
   Settings,
   Sparkles,
   User,
   Users
 } from "lucide-react"
-import Headertwo from "@/components/Header/headertwo.jsx";
+import Index from "@/components/Header/HeaderTwo/index.jsx";
 import Horoscope from "@/components/Horoscope/index.jsx";
-
+import Prompt from "@/components/Journal/PromptComponent.jsx";
 
 export default function Dashboard() {
   return (
       <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
         {/* Navigation */}
-        <Headertwo />
+        <Index />
         <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
           {/* Sidebar */}
           <aside className="w-full md:w-64 shrink-0">
@@ -98,24 +95,8 @@ export default function Dashboard() {
               </div>
 
 
-              <div className="mt-6 p-4 bg-purple-50 rounded-lg">
-                <h3 className="font-medium text-purple-700 mb-2">
-                  Today&apos;s Prompt
-                </h3>
-                <p className="text-sm text-gray-600 mb-3">
-                  What&apos;s one small thing that brought you joy today?
-                </p>
-                <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full border-purple-200 text-purple-600 hover:bg-purple-100"
-                >
-                  Answer
-                </Button>
-              </div>
+              <Prompt/>
 
-              <div className="mt-6 p-4 bg-purple-50 rounded-lg">
-              </div>
             </div>
           </aside>
 
@@ -133,7 +114,7 @@ export default function Dashboard() {
 
               <TabsContent value="for-you" className="mt-4 space-y-6">
                 {/* Post 1 */}
-                <Card className="overflow-hidden">
+                <Card className="overflow-hidden bg-white">
                   <CardHeader className="p-4 pb-0">
                     <div className="flex items-center gap-3">
                       <Avatar>
@@ -159,7 +140,7 @@ export default function Dashboard() {
                     </p>
                     <div className="rounded-xl overflow-hidden">
                       <img
-                          src="/placeholder.svg?height=400&width=600"
+                          src="https://youspace-app.s3.us-west-1.amazonaws.com/cactus.jpg"
                           alt="Summer vision board"
                           width={600}
                           height={400}
@@ -197,7 +178,7 @@ export default function Dashboard() {
                 </Card>
 
                 {/* Post 2 */}
-                <Card className="overflow-hidden">
+                <Card className="overflow-hidden bg-white">
                   <CardHeader className="p-4 pb-0">
                     <div className="flex items-center gap-3">
                       <Avatar>
@@ -217,30 +198,32 @@ export default function Dashboard() {
                   </CardHeader>
                   <CardContent className="p-4">
                     <p className="mb-4">
-                      My aesthetic for this month is pastel dreams ✨
+                      My aesthetic for this month is cool summer nights, frank ocean, and pastels ✨
                     </p>
                     <div className="grid grid-cols-2 gap-2 rounded-xl overflow-hidden">
-                      <img                          src="/placeholder.svg?height=200&width=200"
+                      <img
+                          src="https://youspace-app.s3.us-west-1.amazonaws.com/car.jpg"
                           alt="Pastel aesthetic 1"
                           width={200}
                           height={200}
                           className="w-full object-cover rounded-lg"
                       />
-                      <img                          src="/placeholder.svg?height=200&width=200"
+                      <img
+                          src="https://youspace-app.s3.us-west-1.amazonaws.com/Flowers.jpg"
                           alt="Pastel aesthetic 2"
                           width={200}
                           height={200}
                           className="w-full object-cover rounded-lg"
                       />
                       <img
-                          src="/placeholder.svg?height=200&width=200"
+                          src="https://youspace-app.s3.us-west-1.amazonaws.com/girl.jpg"
                           alt="Pastel aesthetic 3"
                           width={200}
                           height={200}
                           className="w-full object-cover rounded-lg"
                       />
                       <img
-                          src="/placeholder.svg?height=200&width=200"
+                          src="https://youspace-app.s3.us-west-1.amazonaws.com/moon.jpg"
                           alt="Pastel aesthetic 4"
                           width={200}
                           height={200}
@@ -314,123 +297,126 @@ export default function Dashboard() {
 
           {/* Right Sidebar */}
           <aside className="w-full md:w-72 shrink-0">
-            <Horoscope />
-            <div className="bg-white rounded-xl shadow-sm p-4 sticky top-20">
-              <h3 className="font-medium text-gray-900 mb-4">
-                Suggested for You
-              </h3>
+            <div className="sticky top-20">
+              <Horoscope />
+              <div className="bg-white rounded-xl shadow-sm p-4">
+                <h3 className="font-medium text-gray-900 mb-4">
+                  Suggested for You
+                </h3>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarImage
-                        src="/placeholder.svg?height=40&width=40"
-                        alt="@username"
-                    />
-                    <AvatarFallback className="bg-blue-100 text-blue-500">
-                      EM
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">Emma Mitchell</p>
-                    <p className="text-xs text-gray-500">Travel enthusiast</p>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Avatar>
+                      <AvatarImage
+                          src="/placeholder.svg?height=40&width=40"
+                          alt="@username"
+                      />
+                      <AvatarFallback className="bg-blue-100 text-blue-500">
+                        EM
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">Emma Mitchell</p>
+                      <p className="text-xs text-gray-500">Travel enthusiast</p>
+                    </div>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
+                    >
+                      Follow
+                    </Button>
                   </div>
-                  <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
-                  >
-                    Follow
-                  </Button>
+
+                  <div className="flex items-center gap-3">
+                    <Avatar>
+                      <AvatarImage
+                          src="/placeholder.svg?height=40&width=40"
+                          alt="@username"
+                      />
+                      <AvatarFallback className="bg-green-100 text-green-500">
+                        RJ
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">Ryan Johnson</p>
+                      <p className="text-xs text-gray-500">Art & Design</p>
+                    </div>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
+                    >
+                      Follow
+                    </Button>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <Avatar>
+                      <AvatarImage
+                          src="/placeholder.svg?height=40&width=40"
+                          alt="@username"
+                      />
+                      <AvatarFallback className="bg-purple-100 text-purple-500">
+                        SL
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">Sophia Lee</p>
+                      <p className="text-xs text-gray-500">Fashion & Style</p>
+                    </div>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
+                    >
+                      Follow
+                    </Button>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarImage
-                        src="/placeholder.svg?height=40&width=40"
-                        alt="@username"
-                    />
-                    <AvatarFallback className="bg-green-100 text-green-500">
-                      RJ
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">Ryan Johnson</p>
-                    <p className="text-xs text-gray-500">Art & Design</p>
+                <div className="mt-6">
+                  <h3 className="font-medium text-gray-900 mb-4">Trending Tags</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
+                    >
+                      #SummerVibes
+                    </Button>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
+                    >
+                      #AestheticGoals
+                    </Button>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full border-blue-100 bg-blue-50 text-blue-500 hover:bg-blue-100"
+                    >
+                      #DreamBoards
+                    </Button>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
+                    >
+                      #SelfCare
+                    </Button>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
+                    >
+                      #Inspiration
+                    </Button>
                   </div>
-                  <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
-                  >
-                    Follow
-                  </Button>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <Avatar>
-                    <AvatarImage
-                        src="/placeholder.svg?height=40&width=40"
-                        alt="@username"
-                    />
-                    <AvatarFallback className="bg-purple-100 text-purple-500">
-                      SL
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">Sophia Lee</p>
-                    <p className="text-xs text-gray-500">Fashion & Style</p>
-                  </div>
-                  <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
-                  >
-                    Follow
-                  </Button>
                 </div>
               </div>
 
-              <div className="mt-6">
-                <h3 className="font-medium text-gray-900 mb-4">Trending Tags</h3>
-                <div className="flex flex-wrap gap-2">
-                  <Button
-                      variant="outline"
-                      size="sm"
-                      className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
-                  >
-                    #SummerVibes
-                  </Button>
-                  <Button
-                      variant="outline"
-                      size="sm"
-                      className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
-                  >
-                    #AestheticGoals
-                  </Button>
-                  <Button
-                      variant="outline"
-                      size="sm"
-                      className="rounded-full border-blue-100 bg-blue-50 text-blue-500 hover:bg-blue-100"
-                  >
-                    #DreamBoards
-                  </Button>
-                  <Button
-                      variant="outline"
-                      size="sm"
-                      className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
-                  >
-                    #SelfCare
-                  </Button>
-                  <Button
-                      variant="outline"
-                      size="sm"
-                      className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
-                  >
-                    #Inspiration
-                  </Button>
-                </div>
-              </div>
             </div>
           </aside>
         </div>

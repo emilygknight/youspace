@@ -1,4 +1,5 @@
-import Header from "@/components/Header/index.jsx";
+import { useNavigate } from "react-router-dom";
+import Header from "@/components/Header/HeaderOne/index.jsx";
 
 import { Button } from "@/components/ui/button.jsx"
 import {
@@ -15,6 +16,7 @@ import Balloon from "../../assets/ballons.mp4"
 // import Beach from "../../assets/beach.mp4"
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
     <Header/>
@@ -184,6 +186,7 @@ export default function LandingPage() {
             inspiration every day.
           </p>
           <Button
+            onClick={() => navigate("/signup")}
             size="lg"
             variant="secondary"
             className="bg-white text-pink-500 hover:bg-gray-100"
