@@ -29,6 +29,7 @@ const resolvers = {
       return thought;
     },
     getMe: async (parent, args, context) => {
+      console.log('context.user in getMe:', context.user)
       if (!context.user) {
         return null;
       }

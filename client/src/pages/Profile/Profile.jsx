@@ -18,13 +18,23 @@ import {
     Users
 } from "lucide-react"
 
-export default function Profile() {
+import { useQuery } from "@apollo/client";
+import { QUERY_ME, QUERY_USER } from "@/utils/queries.js";
+
+
+export default function Profile({ userId }) {
+
+    // Use the useQuery hook to fetch user data
+    const { loading, data, error } = useQuery(QUERY_ME);
+
+    const user = data?.me;
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
             {/* Header with back button */}
             <header className="container mx-auto py-4 px-4">
                 <div className="flex items-center gap-4">
-                    <Link href="/dashboard">
+                    <Link to="/dashboard">
                         <Button
                             variant="ghost"
                             size="icon"
@@ -33,7 +43,7 @@ export default function Profile() {
                             <ArrowLeft className="h-4 w-4" />
                         </Button>
                     </Link>
-                    <h1 className="text-lg font-medium">@stelladreams</h1>
+                    <h1 className="text-lg font-medium">@{user?.username || "Loading..."}</h1>
                     <div className="ml-auto flex items-center gap-2">
                         <Button
                             variant="ghost"
@@ -86,24 +96,23 @@ export default function Profile() {
                     </div>
 
                     <div className="mb-6">
-                        <h1 className="text-2xl font-bold">Stella Dreams</h1>
-                        <p className="text-gray-500">@stelladreams</p>
+                        <h1 className="text-2xl font-bold">{user?.username || "Loading..."}</h1>
+                        <p className="text-gray-500">@{user?.username || "Loading..."}</p>
                         <p className="mt-2 text-gray-700">
-                            ✨ Dreamer, creator, inspiration seeker ✨ Sharing my aesthetic
-                            journey and collecting beautiful moments.
+                            {user?.bio || null}
                         </p>
                         <div className="mt-3 flex items-center gap-4 text-sm text-gray-600">
                             <div className="flex items-center gap-1">
                                 <Users className="h-4 w-4" />
                                 <span>
-                  <strong>1.2k</strong> followers
-                </span>
+                                  <strong>1.2k</strong> followers
+                                </span>
                             </div>
                             <div className="flex items-center gap-1">
                                 <Heart className="h-4 w-4" />
                                 <span>
-                  <strong>4.5k</strong> likes
-                </span>
+                                  <strong>4.5k</strong> likes
+                                </span>
                             </div>
                             <div className="flex items-center gap-1">
                                 <Calendar className="h-4 w-4" />
@@ -177,7 +186,7 @@ export default function Profile() {
 
                                 <div className="aspect-square rounded-lg overflow-hidden relative group">
                                     <img
-                                        src="/placeholder.svg?height=200&width=200"
+                                        src={user?.profilePicture || null}
                                         alt="Vision board item"
                                         width={200}
                                         height={200}

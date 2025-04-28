@@ -9,7 +9,7 @@ import Signup from './pages/Login/Signup.jsx';
 import Login from './pages/Login/Login.jsx';
 import SingleThought from './pages/SingleThought';
 import Dashboard from './pages/Dashboard/Dashboard.jsx';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile/Profile.jsx';
 import Error from './pages/Error';
 import NotFound from "./pages/NotFoundPage.jsx";
 
