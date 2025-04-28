@@ -1,34 +1,17 @@
-import {useState, useEffect} from 'react';
-import {Button} from "@/components/ui/button.jsx";
+import { useState, useEffect } from 'react';
+import { Button } from "@/components/ui/button.jsx";
+import { useQuery } from '@apollo/client';
+import { GET_JOURNAL_PROMPT } from '../../utils/queries';
 
 const PromptComponent = () => {
+    const { loading, error, data } = useQuery(GET_JOURNAL_PROMPT);
     const [prompt, setPrompt] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchPrompt = async () => {
-            setLoading(true);
-            setError(null);
-
-            try {
-                const response = await fetch("http://localhost:8080/api/v1/prompt");
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                setPrompt(data.prompt);
-            } catch (error) {
-                console.error("Error fetching prompt:", error);
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchPrompt();
-    }, []);
-
+        if (data?.getJournalPrompt?.prompt) {
+            setPrompt(data.getJournalPrompt.prompt);
+        }
+    }, [data]);
 
     return (
         <div className="mt-6 p-4 bg-purple-50 rounded-lg">
@@ -39,7 +22,7 @@ const PromptComponent = () => {
                 {loading ? (
                     "Loading prompt..."
                 ) : error ? (
-                    `Error: ${error}`
+                    `Error: ${error.message}`
                 ) : (
                     prompt
                 )}

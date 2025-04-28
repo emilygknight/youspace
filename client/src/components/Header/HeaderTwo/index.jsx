@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu.jsx"
 
 
-const Index = () => {
+const Index = ({userId}) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -75,7 +75,7 @@ const Index = () => {
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent className="bg-white">
                                     <DropdownMenuSeparator />
-                                    <Link href="/profile">
+                                    <Link to={`/profile/${userId}`}>
                                         <DropdownMenuItem className="cursor-pointer">
                                             Profile
                                         </DropdownMenuItem>

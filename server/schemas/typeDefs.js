@@ -4,6 +4,8 @@ const typeDefs = `
     username: String!
     bio: String
     profilePicture: String
+    firstName: String
+    lastName: String
     city: String
     state: String
     country: String
@@ -32,6 +34,10 @@ const typeDefs = `
     mood: String
     stickers: [String!]
     createdAt: String!
+  }
+  
+  type JournalPromptResponse {
+    prompt: String!
   }
 
   type Thought {
@@ -74,7 +80,8 @@ const typeDefs = `
     # Diary Queries
     getAuthenticatedUserDiaryEntries: [Diary!]!
     getDiaryEntry(diaryId: ID!): Diary
-
+    getJournalPrompt: JournalPromptResponse!
+ 
     # Comment Queries
     getComments(thoughtId: ID!): [Comment!]!
     getComment(commentId: ID!): Comment
@@ -86,6 +93,7 @@ const typeDefs = `
     getFollowers(userId: ID!): [User!]!
     getFollowing(userId: ID!): [User!]!
   }
+  
 
   type Mutation {
     # USER

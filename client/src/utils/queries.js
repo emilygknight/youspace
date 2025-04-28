@@ -9,11 +9,16 @@ export const QUERY_USER = gql`
       thoughts {
         _id
         thoughtText
+        thoughtAuthor {
+          _id
+          username
+        }
         createdAt
       }
     }
   }
 `;
+
 
 export const QUERY_THOUGHTS = gql`
   query getThoughts {
@@ -45,16 +50,27 @@ export const QUERY_SINGLE_THOUGHT = gql`
 
 export const QUERY_ME = gql`
   query me {
-    me {
+    me: getMe {
       _id
       username
       email
       thoughts {
         _id
         thoughtText
-        thoughtAuthor
+        thoughtAuthor {
+          _id
+          username
+        }
         createdAt
       }
+    }
+  }
+`;
+
+export const GET_JOURNAL_PROMPT = gql`
+  query getJournalPrompt {
+    getJournalPrompt {
+      prompt
     }
   }
 `;

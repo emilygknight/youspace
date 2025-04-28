@@ -1,52 +1,142 @@
 [
   {
-    "username": "Brian Kernighan",
+    "username": "briankernighan",
+    "firstName": "Brian",
+    "lastName": "Kernighan",
     "email": "bkernighan@techfriends.dev",
-    "password": "password01"
+    "password": "password1234",
+    "bio": "Co-author of The C Programming Language and AWK.",
+    "profilePicture": null,
+    "city": "Murray Hill",
+    "state": "New Jersey",
+    "country": "USA",
+    "birthdate": "1942-01-01",
+    "zodiacSign": "Capricorn"
   },
   {
-    "username": "Max Kanat-Alexander",
+    "username": "maxkanatalexander",
+    "firstName": "Max",
+    "lastName": "Kanat-Alexander",
     "email": "mkanatalexander@techfriends.dev",
-    "password": "password02"
+    "password": "password1234",
+    "bio": "Author of 'Code as Craft'.",
+    "profilePicture": null,
+    "city": "San Francisco",
+    "state": "California",
+    "country": "USA",
+    "birthdate": "1973-03-22",
+    "zodiacSign": "Aries"
   },
   {
-    "username": "Why The Lucky Stiff",
+    "username": "whytheluckystiff",
+    "firstName": "Why The Lucky",
+    "lastName": "Stiff",
     "email": "wtls@techfriends.dev",
-    "password": "password03"
+    "password": "password1234",
+    "bio": "Creator of Shoes and Hackety Hack.",
+    "profilePicture": null,
+    "city": null,
+    "state": null,
+    "country": null,
+    "birthdate": null,
+    "zodiacSign": null
   },
   {
-    "username": "Kent Beck",
+    "username": "kentbeck",
+    "firstName": "Kent",
+    "lastName": "Beck",
     "email": "kbeck@techfriends.dev",
-    "password": "password04"
+    "password": "password1234",
+    "bio": "One of the creators of Extreme Programming and Test-Driven Development.",
+    "profilePicture": null,
+    "city": "Ashland",
+    "state": "Oregon",
+    "country": "USA",
+    "birthdate": "1961-03-22",
+    "zodiacSign": "Aries"
   },
   {
-    "username": "Edward V. Berard",
+    "username": "edwardvberard",
+    "firstName": "Edward",
+    "lastName": "V. Berard",
     "email": "evberard@techfriends.dev",
-    "password": "password05"
+    "password": "password1234",
+    "bio": "Known for his work on object-oriented analysis and design.",
+    "profilePicture": null,
+    "city": "Gaithersburg",
+    "state": "Maryland",
+    "country": "USA",
+    "birthdate": "1957-09-28",
+    "zodiacSign": "Libra"
   },
   {
-    "username": "Alan Kay",
+    "username": "alankay",
+    "firstName": "Alan",
+    "lastName": "Kay",
     "email": "akay@techfriends.dev",
-    "password": "password06"
+    "password": "password1234",
+    "bio": "Pioneer of object-oriented programming and Smalltalk.",
+    "profilePicture": null,
+    "city": "Los Angeles",
+    "state": "California",
+    "country": "USA",
+    "birthdate": "1940-04-07",
+    "zodiacSign": "Aries"
   },
   {
-    "username": "C.A.R. Hoare",
+    "username": "carhoare",
+    "firstName": "C.A.R.",
+    "lastName": "Hoare",
     "email": "choare@techfriends.dev",
-    "password": "password07"
+    "password": "password1234",
+    "bio": "Developed the Quicksort algorithm and Hoare logic.",
+    "profilePicture": null,
+    "city": "Oxford",
+    "state": "Oxfordshire",
+    "country": "UK",
+    "birthdate": "1934-01-11",
+    "zodiacSign": "Capricorn"
   },
   {
-    "username": "David Thomas",
+    "username": "davidthomas",
+    "firstName": "David",
+    "lastName": "Thomas",
     "email": "dthomas@techfriends.dev",
-    "password": "password08"
+    "password": "password1234",
+    "bio": "Co-author of The Pragmatic Programmer.",
+    "profilePicture": null,
+    "city": "Dallas",
+    "state": "Texas",
+    "country": "USA",
+    "birthdate": "1956-09-09",
+    "zodiacSign": "Virgo"
   },
   {
-    "username": "Donald Knuth",
+    "username": "donaldknuth",
+    "firstName": "Donald",
+    "lastName": "Knuth",
     "email": "dknuth@techfriends.dev",
-    "password": "password09"
+    "password": "password1234",
+    "bio": "Author of The Art of Computer Programming.",
+    "profilePicture": null,
+    "city": "Stanford",
+    "state": "California",
+    "country": "USA",
+    "birthdate": "1938-01-10",
+    "zodiacSign": "Capricorn"
   },
   {
-    "username": "Lernantino",
-    "email": "lernantino@techfriends.dev",
-    "password": "password10"
+    "username": "lernantino",
+    "firstName": "Lernantino",
+    "lastName": null,
+    "email": "lernantino@techfrien`ds.dev",
+    "password": "password10",
+    "bio": "...",
+    "profilePicture": null,
+    "city": "Austin",
+    "state": "Texas",
+    "country": "USA",
+    "birthdate": null,
+    "zodiacSign": null
   }
 ]
