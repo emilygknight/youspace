@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+
 import { Button } from "@/components/ui/button.jsx";
 import { useQuery } from '@apollo/client';
 import { GET_JOURNAL_PROMPT } from '../../utils/queries';
@@ -27,13 +29,16 @@ const PromptComponent = () => {
                     prompt
                 )}
             </p>
-            <Button
-                variant="outline"
-                size="sm"
-                className="w-full border-purple-200 text-purple-600 hover:bg-purple-100"
-            >
-                Answer
-            </Button>
+            <Link to="/diary">
+                <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full border-purple-200 text-purple-600 hover:bg-purple-100"
+                >
+                    Answer
+                </Button>
+            </Link>
+
         </div>
     );
 };

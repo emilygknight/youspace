@@ -15,7 +15,8 @@ import {
     Settings,
     Share,
     Type,
-    Users
+    Users,
+    UserRound
 } from "lucide-react"
 
 import { useQuery } from "@apollo/client";
@@ -82,11 +83,11 @@ export default function Profile({ userId }) {
                     <div className="relative -mt-16 mb-4 flex justify-between items-end">
                         <Avatar className="h-32 w-32 border-4 border-white bg-white">
                             <AvatarImage
-                                src="/placeholder.svg?height=128&width=128"
+                                src={`${user?.profilePicture || null}`}
                                 alt="@stelladreams"
                             />
                             <AvatarFallback className="text-2xl bg-pink-100 text-pink-500">
-                                SD
+                                <UserRound size={64} />
                             </AvatarFallback>
                         </Avatar>
                         <Button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">

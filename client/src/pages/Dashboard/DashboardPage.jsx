@@ -21,15 +21,16 @@ import {
   Settings,
   Sparkles,
   User,
-  Users
+  Users,
+  UserRound
 } from "lucide-react"
 import Index from "@/components/Header/HeaderTwo/index.jsx";
 import Horoscope from "@/components/Horoscope/index.jsx";
-import Prompt from "@/components/Journal/PromptComponent.jsx";
+import Prompt from "@/components/Diary/PromptComponent.jsx";
 
 import getUserIdFromJWT from "@/utils/jwt.js"
 
-export default function Dashboard() {
+export default function DashboardPage() {
 
   const [userId, setUserId] = useState();
 
@@ -45,7 +46,7 @@ export default function Dashboard() {
   // // if userId changes, log it
   // useEffect(() => {
   //   if (userId) {
-  //     console.log("Updated User ID in Dashboard:", userId);
+  //     console.log("Updated User ID in DashboardPage:", userId);
   //   }
   // }, [userId]);
 
@@ -101,7 +102,7 @@ export default function Dashboard() {
                   <span>Profile</span>
                 </Link>
                 <Link
-                    to="/settings"
+                    to="/profile/edit"
                     className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
                 >
                   <Settings className="h-5 w-5" />
@@ -145,7 +146,7 @@ export default function Dashboard() {
                             alt="@username"
                         />
                         <AvatarFallback className="bg-pink-100 text-pink-500">
-                          JD
+                          <UserRound/>
                         </AvatarFallback>
                       </Avatar>
                       <div>

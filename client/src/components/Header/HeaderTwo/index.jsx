@@ -80,7 +80,9 @@ const Index = ({userId}) => {
                                             Profile
                                         </DropdownMenuItem>
                                     </Link>
-                                    <DropdownMenuItem>Edit Profile</DropdownMenuItem>
+                                    <Link to="/profile/edit">
+                                        <DropdownMenuItem>Edit Profile</DropdownMenuItem>
+                                    </Link>
                                     <DropdownMenuItem>Settings</DropdownMenuItem>
                                     <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                                         Sign Out
