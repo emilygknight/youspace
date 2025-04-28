@@ -29,10 +29,14 @@ const resolvers = {
       return thought;
     },
     getMe: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+      if (!context.user) {
+        return null;
       }
-      throw new AuthenticationError('Not authenticated');
+      const user = await User.findById(context.user._id).populate({
+        path: 'thoughts',
+        populate: { path: 'thoughtAuthor' },
+      });
+      return user;
     },
     getJournalPrompt: async () => {
       console.log('getJournalPrompt resolver called!');

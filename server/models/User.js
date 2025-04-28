@@ -75,49 +75,54 @@ const userSchema = new Schema({
   zodiacSign: {
     type: String,
   },
-
   createdAt: {
     type: Date,
     default: Date.now,
   },
-      diaries: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Diary',
-        },
-      ],
-      comments: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Comment',
-        },
-      ],
-      likes: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Like',
-        },
-      ],
-      followers: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Follow',
-        },
-      ],
-      following: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Follow',
-        },
-      ],
-    },
+  thoughts: [
     {
-      toJSON: {
-        getters: true,
-        virtuals: true,
-      },
-      id: false,
-    }
+      type: Schema.Types.ObjectId,
+      ref: 'Thought',
+    },
+  ],
+  diaries: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Diary',
+    },
+  ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
+  likes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Like',
+    },
+  ],
+  followers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Follow',
+    },
+  ],
+  following: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Follow',
+    },
+  ],
+},
+{
+  toJSON: {
+    getters: true,
+    virtuals: true,
+  },
+  id: false,
+}
 );
 
 //Virtuals
