@@ -6,6 +6,7 @@ const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
+const graphqlUploadExpress = require('graphql-upload/graphqlUploadExpress.js');
 
 // Import GraphQL type definitions and resolvers
 const { typeDefs, resolvers } = require('./schemas');
@@ -28,9 +29,13 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  app.use('/graphql', expressMiddleware(server, {
-    context: authMiddleware
-  }));
+  app.use(
+      '/graphql',
+      graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
+      expressMiddleware(server, {
+        context: authMiddleware,
+      })
+  );
 
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));

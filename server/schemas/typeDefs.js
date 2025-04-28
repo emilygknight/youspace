@@ -92,6 +92,9 @@ const typeDefs = `
     # Follow Queries
     getFollowers(userId: ID!): [User!]!
     getFollowing(userId: ID!): [User!]!
+    
+    # S3 Queries
+    getFiles(userId: String!): [String!]
   }
   
 
@@ -127,7 +130,23 @@ const typeDefs = `
     # FOLLOW
     followUser(followingId: ID!): User
     unfollowUser(followingId: ID!): User
+    
+    # S3
+    singleUpload(input: SingleFileInput!): String!
+    multiUpload(input: MultiFileInput!): String!
+  }
+  scalar Upload
+
+  input SingleFileInput {
+    userId: String!
+    file: Upload!
+  }
+
+  input MultiFileInput {
+    userId: String!
+    files: [Upload!]!
   }
 `;
+
 
 module.exports = typeDefs;
