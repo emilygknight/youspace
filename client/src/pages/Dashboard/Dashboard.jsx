@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -26,11 +27,32 @@ import Index from "@/components/Header/HeaderTwo/index.jsx";
 import Horoscope from "@/components/Horoscope/index.jsx";
 import Prompt from "@/components/Journal/PromptComponent.jsx";
 
+import getUserIdFromJWT from "@/utils/jwt.js"
+
 export default function Dashboard() {
+
+  const [userId, setUserId] = useState();
+
+  useEffect(() => {
+    const token = localStorage.getItem("id_token");
+    if (token) {
+      const extractedUserId = getUserIdFromJWT(token);
+      setUserId(extractedUserId);
+      console.log("Extracted User ID:", extractedUserId);
+    }
+  }, []);
+
+  // // if userId changes, log it
+  // useEffect(() => {
+  //   if (userId) {
+  //     console.log("Updated User ID in Dashboard:", userId);
+  //   }
+  // }, [userId]);
+
   return (
       <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
         {/* Navigation */}
-        <Index />
+        <Index userId={userId} />
         <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
           {/* Sidebar */}
           <aside className="w-full md:w-64 shrink-0">
@@ -72,7 +94,7 @@ export default function Dashboard() {
                   <span>Saved</span>
                 </Link>
                 <Link
-                    to="/profile"
+                    to={`/profile/${userId}`}
                     className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-pink-500 hover:bg-pink-50 rounded-lg"
                 >
                   <User className="h-5 w-5" />
