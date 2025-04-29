@@ -33,7 +33,7 @@ const PromptComponent = () => {
                 <Button
                     variant="outline"
                     size="sm"
-                    className="w-full border-purple-200 text-purple-600 hover:bg-purple-100"
+                    className="w-full border-purple-200 text-purple-600 hover:bg-purple-100 cursor-pointer"
                 >
                     Answer
                 </Button>

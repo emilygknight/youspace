@@ -13,6 +13,8 @@ import EditProfile from './pages/Profile/ProfileEditPage.jsx';
 import Error from './pages/Error';
 import NotFound from "./pages/NotFoundPage.jsx";
 import DiaryPage from "@/pages/Diary/DiaryPage.jsx";
+import ExplorePage from "@/pages/Explore/ExplorePage.jsx";
+import CreatePostPage from "@/pages/Create/CreatePostPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,31 +31,32 @@ const router = createBrowserRouter([
       }, {
         path: '/signup',
         element: <Signup />
-      },
-      {
+      }, {
        path: "/dashboard",
          element: <DashboardPage />
-      },
-      {
+      }, {
         path: '/me',
         element: <Profile />
-      },
-      {
+      }, {
         path: '/profile/edit',
         element: <EditProfile />
       },
       {
+        path: '/create/post',
+        element: <CreatePostPage />
+      }, {
         path: '/profile/:profileId',
         element: <Profile />
       }, {
         path: '/thoughts/:thoughtId',
         element: <SingleThought />
-      },
-      {
+      }, {
         path: '/diary',
         element: <DiaryPage />
-      },
-      {
+      }, {
+        path: '/explore',
+        element: <ExplorePage />
+      }, {
         path: '/*',
         element: <NotFound />
       }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
@@ -31,6 +31,8 @@ import Prompt from "@/components/Diary/PromptComponent.jsx";
 import getUserIdFromJWT from "@/utils/jwt.js"
 
 export default function DashboardPage() {
+
+  const navigate = useNavigate();
 
   const [userId, setUserId] = useState();
 
@@ -111,8 +113,8 @@ export default function DashboardPage() {
               </nav>
 
               <div className="mt-6">
-                <Button className="w-full text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">
-                  <Plus className="h-4 w-4 mr-2" />
+                <Button onClick={() => navigate("/create/post")} className="w-full text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 cursor-pointer">
+                <Plus className="h-4 w-4 mr-2" />
                   Create Post
                 </Button>
               </div>

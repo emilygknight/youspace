@@ -72,7 +72,7 @@ export default function ProfileEditPage() {
                             <Button
                                 onClick={handleSave}
                                 disabled={saving}
-                                className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600"
+                                className="text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600"
                             >
                                 {saving ? (
                                     <>
@@ -81,7 +81,7 @@ export default function ProfileEditPage() {
                                     </>
                                 ) : (
                                     <>
-                                        <Save className="mr-2 h-4 w-4" />
+                                        <Save className=" mr-2 h-4 w-4" />
                                         Save Changes
                                     </>
                                 )}

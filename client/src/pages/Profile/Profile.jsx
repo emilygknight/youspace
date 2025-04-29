@@ -83,14 +83,14 @@ export default function Profile({ userId }) {
                     <div className="relative -mt-16 mb-4 flex justify-between items-end">
                         <Avatar className="h-32 w-32 border-4 border-white bg-white">
                             <AvatarImage
-                                src={`${user?.profilePicture || null}`}
+                                src={`${user?.profilePicture || "https://youspace-app.s3.us-west-1.amazonaws.com/Clouds.jpg"}`}
                                 alt="@stelladreams"
                             />
                             <AvatarFallback className="text-2xl bg-pink-100 text-pink-500">
                                 <UserRound size={64} />
                             </AvatarFallback>
                         </Avatar>
-                        <Button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">
+                        <Button className="text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">
                             <Edit className="h-4 w-4 mr-2" />
                             Customize Profile
                         </Button>
@@ -174,7 +174,7 @@ export default function Profile({ userId }) {
                             <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
                                 <div className="aspect-square rounded-lg overflow-hidden relative group col-span-2 row-span-2">
                                     <img
-                                        src="/placeholder.svg?height=400&width=400"
+                                        src="https://youspace-app.s3.us-west-1.amazonaws.com/Flowers.jpg"
                                         alt="Vision board item"
                                         width={400}
                                         height={400}
@@ -187,7 +187,7 @@ export default function Profile({ userId }) {
 
                                 <div className="aspect-square rounded-lg overflow-hidden relative group">
                                     <img
-                                        src={user?.profilePicture || null}
+                                        src={user?.profilePicture || "https://youspace-app.s3.us-west-1.amazonaws.com/Girl2.jpg"}
                                         alt="Vision board item"
                                         width={200}
                                         height={200}
@@ -200,7 +200,7 @@ export default function Profile({ userId }) {
 
                                 <div className="aspect-square rounded-lg overflow-hidden relative group">
                                     <img
-                                        src="/placeholder.svg?height=200&width=200"
+                                        src="https://youspace-app.s3.us-west-1.amazonaws.com/Mountains.jpg"
                                         alt="Vision board item"
                                         width={200}
                                         height={200}
@@ -213,7 +213,7 @@ export default function Profile({ userId }) {
 
                                 <div className="aspect-square rounded-lg overflow-hidden relative group">
                                     <img
-                                        src="/placeholder.svg?height=200&width=200"
+                                        src="https://youspace-app.s3.us-west-1.amazonaws.com/pups.jpg"
                                         alt="Vision board item"
                                         width={200}
                                         height={200}
@@ -226,7 +226,7 @@ export default function Profile({ userId }) {
 
                                 <div className="aspect-square rounded-lg overflow-hidden relative group">
                                     <img
-                                        src="/placeholder.svg?height=200&width=200"
+                                        src="https://youspace-app.s3.us-west-1.amazonaws.com/Swan.jpg"
                                         alt="Vision board item"
                                         width={200}
                                         height={200}
@@ -239,7 +239,7 @@ export default function Profile({ userId }) {
 
                                 <div className="aspect-square rounded-lg overflow-hidden relative group col-span-2">
                                     <img
-                                        src="/placeholder.svg?height=200&width=400"
+                                        src="https://youspace-app.s3.us-west-1.amazonaws.com/tree.jpg"
                                         alt="Vision board item"
                                         width={400}
                                         height={200}
@@ -254,7 +254,7 @@ export default function Profile({ userId }) {
 
                                 <div className="aspect-square rounded-lg overflow-hidden relative group">
                                     <img
-                                        src="/placeholder.svg?height=200&width=200"
+                                        src="https://youspace-app.s3.us-west-1.amazonaws.com/Clouds.jpg"
                                         alt="Vision board item"
                                         width={200}
                                         height={200}
@@ -286,7 +286,7 @@ export default function Profile({ userId }) {
                                     </p>
                                     <div className="rounded-lg overflow-hidden">
                                         <img
-                                            src="/placeholder.svg?height=300&width=500"
+                                            src="https://youspace-app.s3.us-west-1.amazonaws.com/confetti.jpg"
                                             alt="Summer vision board"
                                             width={500}
                                             height={300}
@@ -324,7 +324,7 @@ export default function Profile({ userId }) {
                                     </p>
                                     <div className="rounded-lg overflow-hidden">
                                         <img
-                                            src="/placeholder.svg?height=300&width=500"
+                                            src="https://youspace-app.s3.us-west-1.amazonaws.com/Clouds.jpg"
                                             alt="Pastel colors"
                                             width={500}
                                             height={300}
