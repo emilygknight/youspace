@@ -15,6 +15,8 @@ import {
 
 import YouSpace from "../../assets/YouSpace-1.mp4";
 import Balloon from "../../assets/ballons.mp4"
+import BGCover from "../../assets/YS-BG.png"
+import NoiseGradient from "@/components/NoiseGradient/NoiseGradient.jsx";
 // import Beach from "../../assets/beach.mp4"
 
 export default function LandingPage() {
@@ -39,27 +41,36 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
+    <div className=" min-h-screen">
+    {/*min-h-screen bg-gradient-to-b from-pink-50 to-purple-50*/}
+
     <Header/>
 
 
-      {/* Hero Section */}
-      <section className="container mx-auto py-16 px-4">
+    {/* Hero Section */}
+      <section className="relative py-16 px-4 w-full h-screen flex items-center justify-center overflow-hidden">
+        <NoiseGradient className="absolute inset-0 w-full h-full z-10" />
+        <img
+            src={BGCover}
+            alt="Hero Background"
+            className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+      <div className="container mx-auto z-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
               Your space to{" "}
               <span className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-                dream
-              </span>
+                      dream
+                    </span>
               ,{" "}
               <span className="bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent">
-                create
-              </span>{" "}
+                      create
+                    </span>{" "}
               &{" "}
               <span className="bg-gradient-to-r from-blue-400 to-pink-500 bg-clip-text text-transparent">
-                inspire
-              </span>
+                      inspire
+                    </span>
             </h1>
             <p className="text-lg text-gray-600">
               Create aesthetically pleasing vision boards that represent your
@@ -69,18 +80,18 @@ export default function LandingPage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                onClick={() => navigate("/signup")}
-                size="lg"
-                className="text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 cursor-pointer"
+                  onClick={() => navigate("/signup")}
+                  size="lg"
+                  className="text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 cursor-pointer"
               >
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
-                onClick={() => navigate("/examples")}
-                size="lg"
-                variant="outline"
-                className="border-pink-200 text-pink-500 hover:bg-pink-50 cursor-pointer"
+                  onClick={() => navigate("/examples")}
+                  size="lg"
+                  variant="outline"
+                  className="border-pink-300 border-2 text-pink-500 hover:bg-pink-50 cursor-pointer"
               >
                 See Examples
               </Button>
@@ -116,7 +127,7 @@ export default function LandingPage() {
               <video
                   alt="Beach video"
                   width={150}
-                    height={150}
+                  height={150}
                   className="rounded-lg"
                   loop
                   autoPlay
@@ -136,17 +147,21 @@ export default function LandingPage() {
               <div className="bg-pink-100 rounded-lg p-2 flex items-center gap-2">
                 <Heart className="h-4 w-4 text-pink-500 fill-pink-500" />
                 <span className="text-sm font-medium text-pink-500">
-                  254 likes
-                </span>
+                        254 likes
+                      </span>
               </div>
             </div>
           </div>
         </div>
-      </section>
+
+      </div>
+
+    </section>
 
 
-      {/* Features Section */}
-      <section className="container mx-auto py-20 px-4 ">
+    {/* Features Section */}
+    <section className=" mx-auto py-20 px-4 bg-pink-50">
+      <div className="container mx-auto relative">
         <div className="text-center mb-16 z-10">
           <h2 className="text-3xl font-bold mb-4">Express Yourself Your Way</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -214,16 +229,18 @@ export default function LandingPage() {
           ></div>
         </div>
         {/* End Blob */}
-      </section>
+      </div>
+    </section>
 
 
-      {/* Carousel Section */}
-      <section className="relative">
-        <InfiniteImageCarousel images={images} speed={30} />
-      </section>
+    {/* Carousel Section */}
+    <section className="relative bg-gradient-to-b from-pink-50 to-purple-50" >
+      <InfiniteImageCarousel images={images} speed={30} />
+    </section>
 
-      {/* CTA Section */}
-      <section className="container mx-auto py-20 px-4">
+    {/* CTA Section */}
+    <section className=" mx-auto py-20 px-4 bg-gradient-to-b from-pink-50 to-purple-50">
+      <div className="container mx-auto relative">
         <div className="bg-gradient-to-r from-pink-500 to-purple-500 rounded-3xl p-12 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">
             Ready to create your space?
@@ -233,18 +250,20 @@ export default function LandingPage() {
             inspiration every day.
           </p>
           <Button
-            onClick={() => navigate("/signup")}
-            size="lg"
-            variant="secondary"
-            className="bg-white text-pink-500 hover:bg-gray-100"
+              onClick={() => navigate("/signup")}
+              size="lg"
+              variant="secondary"
+              className="bg-white text-pink-500 hover:bg-gray-100"
           >
             Sign Up Now
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
-      </section>
+      </div>
+
+    </section>
 
 
-    </div>
+  </div>
   )
 }

@@ -6,7 +6,7 @@ const Index = () => {
     const [error, setError] = useState(null);
 
     const baseURL = 'https://api.aistrology.beandev.xyz/v1';
-    const defaultSign = 'aries';
+    const defaultSign = 'leo';
     const defaultDay = 'today';
 
     useEffect(() => {

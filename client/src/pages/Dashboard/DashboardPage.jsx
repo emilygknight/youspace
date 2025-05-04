@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
@@ -29,8 +29,11 @@ import Horoscope from "@/components/Horoscope/index.jsx";
 import Prompt from "@/components/Diary/PromptComponent.jsx";
 
 import getUserIdFromJWT from "@/utils/jwt.js"
+import UserSuggestion from "@/components/Suggestions/UserSuggestion.jsx";
 
 export default function DashboardPage() {
+
+  const navigate = useNavigate();
 
   const [userId, setUserId] = useState();
 
@@ -111,8 +114,8 @@ export default function DashboardPage() {
               </nav>
 
               <div className="mt-6">
-                <Button className="w-full text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600">
-                  <Plus className="h-4 w-4 mr-2" />
+                <Button onClick={() => navigate("/create/post")} className="w-full text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 cursor-pointer">
+                <Plus className="h-4 w-4 mr-2" />
                   Create Post
                 </Button>
               </div>
@@ -322,124 +325,7 @@ export default function DashboardPage() {
           <aside className="w-full md:w-72 shrink-0">
             <div className="sticky top-20">
               <Horoscope />
-              <div className="bg-white rounded-xl shadow-sm p-4">
-                <h3 className="font-medium text-gray-900 mb-4">
-                  Suggested for You
-                </h3>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <Avatar>
-                      <AvatarImage
-                          src="/placeholder.svg?height=40&width=40"
-                          alt="@username"
-                      />
-                      <AvatarFallback className="bg-blue-100 text-blue-500">
-                        EM
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <p className="font-medium text-sm">Emma Mitchell</p>
-                      <p className="text-xs text-gray-500">Travel enthusiast</p>
-                    </div>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
-                    >
-                      Follow
-                    </Button>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Avatar>
-                      <AvatarImage
-                          src="/placeholder.svg?height=40&width=40"
-                          alt="@username"
-                      />
-                      <AvatarFallback className="bg-green-100 text-green-500">
-                        RJ
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <p className="font-medium text-sm">Ryan Johnson</p>
-                      <p className="text-xs text-gray-500">Art & Design</p>
-                    </div>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
-                    >
-                      Follow
-                    </Button>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Avatar>
-                      <AvatarImage
-                          src="/placeholder.svg?height=40&width=40"
-                          alt="@username"
-                      />
-                      <AvatarFallback className="bg-purple-100 text-purple-500">
-                        SL
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <p className="font-medium text-sm">Sophia Lee</p>
-                      <p className="text-xs text-gray-500">Fashion & Style</p>
-                    </div>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="h-8 border-pink-200 text-pink-500 hover:bg-pink-50"
-                    >
-                      Follow
-                    </Button>
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <h3 className="font-medium text-gray-900 mb-4">Trending Tags</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
-                    >
-                      #SummerVibes
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
-                    >
-                      #AestheticGoals
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="rounded-full border-blue-100 bg-blue-50 text-blue-500 hover:bg-blue-100"
-                    >
-                      #DreamBoards
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="rounded-full border-pink-100 bg-pink-50 text-pink-500 hover:bg-pink-100"
-                    >
-                      #SelfCare
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="rounded-full border-purple-100 bg-purple-50 text-purple-500 hover:bg-purple-100"
-                    >
-                      #Inspiration
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
+              <UserSuggestion />
             </div>
           </aside>
         </div>

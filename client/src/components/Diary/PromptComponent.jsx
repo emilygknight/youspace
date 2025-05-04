@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button.jsx";
 import { useQuery } from '@apollo/client';
-import { GET_JOURNAL_PROMPT } from '../../utils/queries';
+import { QUERY_JOURNAL_PROMPT } from '@/utils/queries.js';
 
 const PromptComponent = () => {
-    const { loading, error, data } = useQuery(GET_JOURNAL_PROMPT);
+    const { loading, error, data } = useQuery(QUERY_JOURNAL_PROMPT);
     const [prompt, setPrompt] = useState("");
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const PromptComponent = () => {
                 <Button
                     variant="outline"
                     size="sm"
-                    className="w-full border-purple-200 text-purple-600 hover:bg-purple-100"
+                    className="w-full border-purple-200 text-purple-600 hover:bg-purple-100 cursor-pointer"
                 >
                     Answer
                 </Button>
