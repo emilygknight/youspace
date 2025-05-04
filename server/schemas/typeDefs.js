@@ -32,7 +32,7 @@ const typeDefs = `
     prompt: String
     diaryText: String!
     mood: String
-    stickers: [String!]
+    stickers: [String!]!
     createdAt: String!
   }
   
@@ -115,10 +115,11 @@ const typeDefs = `
     # THOUGHT
     createThought(thoughtText: String!): Thought
     deleteThought(thoughtId: ID!): Thought
+    deleteLike(thoughtId: ID!): Thought
 
     # LIKE
     createLike(thoughtId: ID!): Thought
-    deleteLike(thoughtId: ID!): Thought
+   
 
     # COMMENT
     createComment(thoughtId: ID!, commentText: String!): Thought
@@ -130,4 +131,4 @@ const typeDefs = `
   }
 `;
 
-module.exports = typeDefs;
+export default typeDefs;

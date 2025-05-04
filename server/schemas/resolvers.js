@@ -1,10 +1,9 @@
 import { User, Thought, Comment, Like, Diary, Follow } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js';
-import { NotFoundError, AuthorizationError } from '../utils/errors.js';
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+// const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+// const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 const resolvers = {
   Query: {
@@ -43,6 +42,8 @@ const resolvers = {
     getJournalPrompt: async () => {
       console.log('getJournalPrompt resolver called!');
       try {
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
         const promptResponse = await model.generateContent({
           contents: [{ parts: [{ text: '15 word count or less, prompt for a journal reflection diary entry' }] }],
         });
@@ -72,6 +73,7 @@ const resolvers = {
       return { token, user };
     },
     login: async (parent, { email, password }) => {
+      console.log('🧪 login called with:', email, password);
       if (!email || !password) throw new Error('Email and password are required');
       const user = await User.findOne({ email });
       if (!user) throw new AuthenticationError('Invalid credentials');
