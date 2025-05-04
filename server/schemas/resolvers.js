@@ -1,7 +1,8 @@
-const { User, Thought, Comment, Like, Diary, Follow } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
+import { User, Thought, Comment, Like, Diary, Follow } from '../models/index.js';
+import { signToken, AuthenticationError } from '../utils/auth.js';
+import { NotFoundError, AuthorizationError } from '../utils/errors.js';
 
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+import { GoogleGenerativeAI } from '@google/generative-ai';
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
@@ -148,4 +149,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+export default resolvers;

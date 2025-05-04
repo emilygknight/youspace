@@ -1,5 +1,6 @@
-const { Schema, model } = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
+import bcrypt from 'bcryptjs';
 
 // Function to determine the zodiac sign based on birthdate
 const getZodiacSign = (month, day) => {
@@ -19,110 +20,110 @@ const getZodiacSign = (month, day) => {
   ];
 
   const birthdate = `${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-  
+
   return zodiacSigns.find(({ start, end }) => (birthdate >= start && birthdate <= end))?.sign || 'Unknown';
 };
 
 const userSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-  },
-  bio: {
-    type: String,
-    maxlength: 280,
-  },
-  profilePicture: {
-    type: String,
-  },
-  firstName: {
-  type: String,
-  maxlength: 100,
-  },
-  lastName: {
-  type: String,
-  maxlength: 100,
-  },
-  city: {
-    type: String,
-    maxlength: 100,
-  },
-  state: {
-      type: String,
-      maxlength: 100,
-  },
-  country: {
-      type: String,
-      maxlength: 100,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    match: [/.+@.+\..+/, 'Must match an email address!'],
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 8,
-  },
-  birthdate: {
-    type: Date,
-    required: false,
-  },
-  zodiacSign: {
-    type: String,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  thoughts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Thought',
+      username: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+      },
+      bio: {
+        type: String,
+        maxlength: 280,
+      },
+      profilePicture: {
+        type: String,
+      },
+      firstName: {
+        type: String,
+        maxlength: 100,
+      },
+      lastName: {
+        type: String,
+        maxlength: 100,
+      },
+      city: {
+        type: String,
+        maxlength: 100,
+      },
+      state: {
+        type: String,
+        maxlength: 100,
+      },
+      country: {
+        type: String,
+        maxlength: 100,
+      },
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: [/.+@.+\..+/, 'Must match an email address!'],
+      },
+      password: {
+        type: String,
+        required: true,
+        minlength: 8,
+      },
+      birthdate: {
+        type: Date,
+        required: false,
+      },
+      zodiacSign: {
+        type: String,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      },
+      thoughts: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Thought',
+        },
+      ],
+      diaries: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Diary',
+        },
+      ],
+      comments: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Comment',
+        },
+      ],
+      likes: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Like',
+        },
+      ],
+      followers: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Follow',
+        },
+      ],
+      following: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Follow',
+        },
+      ],
     },
-  ],
-  diaries: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Diary',
-    },
-  ],
-  comments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Comment',
-    },
-  ],
-  likes: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Like',
-    },
-  ],
-  followers: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Follow',
-    },
-  ],
-  following: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Follow',
-    },
-  ],
-},
-{
-  toJSON: {
-    getters: true,
-    virtuals: true,
-  },
-  id: false,
-}
+      toJSON: {
+        getters: true,
+        virtuals: true,
+      },
+      id: false,
+    }
 );
 
 //Virtuals
@@ -156,12 +157,12 @@ userSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
 
-    // Calculate and set the zodiac sign based on the birthdate
-    if (this.isModified('birthdate') && this.birthdate) {
-      const birthMonth = this.birthdate.getMonth() + 1; // getMonth() is 0-based
-      const birthDay = this.birthdate.getDate();
-      this.zodiacSign = getZodiacSign(birthMonth, birthDay);
-    }
+  // Calculate and set the zodiac sign based on the birthdate
+  if (this.isModified('birthdate') && this.birthdate) {
+    const birthMonth = this.birthdate.getMonth() + 1; // getMonth() is 0-based
+    const birthDay = this.birthdate.getDate();
+    this.zodiacSign = getZodiacSign(birthMonth, birthDay);
+  }
 
   next();
 });
@@ -175,4 +176,4 @@ userSchema.index({ email: 1 }, { unique: true });
 
 const User = model('User', userSchema);
 
-module.exports = User;
+export default User;

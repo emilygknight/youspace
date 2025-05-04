@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 mongoose.connect( 'mongodb://localhost:27017/YouSpace');
 // mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/YouSpace');
 
-module.exports = mongoose.connection;
-
+export default mongoose.connection;
