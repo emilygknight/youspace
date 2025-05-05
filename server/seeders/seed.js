@@ -1,12 +1,12 @@
-import db from '../config/connection.js'; // ES module import
-import { User, Thought, Diary, Like, Comment, Follow } from '../models/index.js'; // ES module import
-import userSeeds from './userSeeds.json' assert { type: "json" }; // ES module import
-import thoughtSeeds from './thoughtSeeds.json' assert { type: "json" }; // ES module import
-import diarySeeds from './diarySeeds.json' assert { type: "json" }; // ES module import
-import likeSeeds from './likeSeeds.json' assert { type: "json" }; // ES module import
-import commentSeeds from './commentSeeds.json' assert { type: "json" }; // ES module import
-import followSeeds from './followSeeds.json' assert { type: "json" }; // ES module import
-import cleanDB from './cleanDB.js'; // ES module import
+import db from '../config/connection.js';
+import { User, Thought, Diary, Like, Comment, Follow } from '../models/index.js';
+import userSeeds from './userSeeds.json' with { type: "json" };
+import thoughtSeeds from './thoughtSeeds.json' with { type: "json" };
+import diarySeeds from './diarySeeds.json' with { type: "json" };
+import likeSeeds from './likeSeeds.json' with { type: "json" };
+import commentSeeds from './commentSeeds.json' with { type: "json" };
+import followSeeds from './followSeeds.json' with { type: "json" };
+import cleanDB from './cleanDB.js';
 
 console.log("Waiting for DB connection...");
 db.once('open', async () => {

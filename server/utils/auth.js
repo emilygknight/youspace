@@ -4,11 +4,15 @@ import jwt from 'jsonwebtoken';
 const secret = 'mysecretssshhhhhhh';
 const expiration = '2h';
 
-export const AuthenticationError = new GraphQLError('Could not authenticate user.', {
-  extensions: {
-    code: 'UNAUTHENTICATED',
-  },
-});
+export class AuthenticationError extends GraphQLError {
+  constructor(message = 'Could not authenticate user.') {
+    super(message, {
+      extensions: {
+        code: 'UNAUTHENTICATED',
+      },
+    });
+  }
+}
 
 export const authMiddleware = function ({ req }) {
   let token = req.body.token || req.query.token || req.headers.authorization;
@@ -26,6 +30,7 @@ export const authMiddleware = function ({ req }) {
     req.user = authenticatedPerson;
   } catch {
     console.log('Invalid token');
+    throw new AuthenticationError('Invalid or expired token');
   }
 
   return req;
