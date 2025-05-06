@@ -1,5 +1,6 @@
-const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
+import dateFormat from '../utils/dateFormat.js';
 
 const likeSchema = new Schema(
     {
@@ -18,15 +19,15 @@ const likeSchema = new Schema(
             default: Date.now,
         },
     },
-        {
-            timestamps: { createdAt: true, updatedAt: false },
-            toJSON: { getters: true },
-            id: false,
-        }
+    {
+        timestamps: { createdAt: true, updatedAt: false },
+        toJSON: { getters: true },
+        id: false,
+    }
 );
 
 likeSchema.index({ likeAuthor: 1, thought: 1 }, { unique: true });
 
 const Like = model('Like', likeSchema);
 
-module.exports = Like;
+export default Like;

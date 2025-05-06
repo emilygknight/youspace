@@ -1,9 +1,7 @@
-const { User, Thought, Comment, Like, Diary, Follow } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
+import { User, Thought, Comment, Like, Diary, Follow } from '../models/index.js';
+import { signToken, AuthenticationError } from '../utils/auth.js';
 
-const { GoogleGenerativeAI } = require('@google/generative-ai');
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const resolvers = {
   Query: {
@@ -42,6 +40,8 @@ const resolvers = {
     getJournalPrompt: async () => {
       console.log('getJournalPrompt resolver called!');
       try {
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
         const promptResponse = await model.generateContent({
           contents: [{ parts: [{ text: '15 word count or less, prompt for a journal reflection diary entry' }] }],
         });
@@ -71,6 +71,7 @@ const resolvers = {
       return { token, user };
     },
     login: async (parent, { email, password }) => {
+      console.log('🧪 login called with:', email, password);
       if (!email || !password) throw new Error('Email and password are required');
       const user = await User.findOne({ email });
       if (!user) throw new AuthenticationError('Invalid credentials');
@@ -148,4 +149,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+export default resolvers;

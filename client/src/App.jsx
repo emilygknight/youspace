@@ -18,9 +18,12 @@ import Footer from './components/Footer';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: '/graphql',
+    uri: '/graphql',
+    fetch: async (uri, options) => {
+        console.log('Apollo Client request URL:', uri);
+        return fetch(uri, options);
+    },
 });
-
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists

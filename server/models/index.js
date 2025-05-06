@@ -1,8 +1,8 @@
-const User = require('./User');
-const Diary = require('./Diary');
-const Thought = require('./Thought');
-const Like = require('./Like');
-const Comment = require('./Comment');
-const Follow = require('./Follow');
+import User from './User.js';
+import Diary from './Diary.js';
+import Thought from './Thought.js';
+import Like from './Like.js';
+import Comment from './Comment.js';
+import Follow from './Follow.js';
 
-module.exports = { User, Diary, Thought, Like, Comment, Follow };
+export { User, Diary, Thought, Like, Comment, Follow };

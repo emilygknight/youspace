@@ -1,13 +1,14 @@
-const db = require('../config/connection');
-const { User, Thought, Diary, Like, Comment, Follow } = require('../models');
-const userSeeds = require('./userSeeds.json');
-const thoughtSeeds = require('./thoughtSeeds.json');
-const diarySeeds = require('./diarySeeds.json');
-const likeSeeds = require('./likeSeeds.json');
-const commentSeeds = require('./commentSeeds.json');
-const followSeeds = require('./followSeeds.json');
-const cleanDB = require('./cleanDB');
+import db from '../config/connection.js';
+import { User, Thought, Diary, Like, Comment, Follow } from '../models/index.js';
+import userSeeds from './userSeeds.json' with { type: "json" };
+import thoughtSeeds from './thoughtSeeds.json' with { type: "json" };
+import diarySeeds from './diarySeeds.json' with { type: "json" };
+import likeSeeds from './likeSeeds.json' with { type: "json" };
+import commentSeeds from './commentSeeds.json' with { type: "json" };
+import followSeeds from './followSeeds.json' with { type: "json" };
+import cleanDB from './cleanDB.js';
 
+console.log("Waiting for DB connection...");
 db.once('open', async () => {
   try {
     await cleanDB('Follow', 'follows');
@@ -38,11 +39,8 @@ db.once('open', async () => {
 
       await User.findOneAndUpdate(
           { _id: user._id },
-          {
-            $addToSet: {
-              thoughts: createdThought._id,
-            },
-          }
+          { $addToSet: { thoughts: createdThought._id } },
+          { new: true }
       );
     }
 

@@ -1,6 +1,7 @@
 {
-  "name": "mern-server",
+  "name": "YouSpace-server",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -14,18 +15,23 @@
   "dependencies": {
     "@apollo/server": "^4.7.1",
     "@google/generative-ai": "^0.24.0",
+    "apollo-server": "^3.13.0",
     "aws-sdk": "^2.1692.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^4.17.2",
     "graphql": "^16.11.0",
     "graphql-upload": "^17.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^6.16.0",
-    "mongoose": "^7.0.2"
+    "mongoose": "^7.0.2",
+    "socket.io": "^4.8.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/socket.io": "^3.0.1",
     "nodemon": "^2.0.3"
   }
 }

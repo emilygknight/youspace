@@ -1,5 +1,6 @@
-const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
+import dateFormat from '../utils/dateFormat.js';
 
 const diarySchema = new Schema({
     entryDate: {
@@ -45,4 +46,4 @@ diarySchema.index({ diaryAuthor: 1, entryDate: -1 });
 
 const Diary = model('Diary', diarySchema);
 
-module.exports = Diary;
+export default Diary;
