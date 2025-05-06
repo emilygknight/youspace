@@ -3,12 +3,18 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom/dist'
 import './index.css'
 
 import App from './App.jsx'
-import Home from './pages/Home';
+import Home from './pages/Landing/LandingPage.jsx';
 import Signup from './pages/Login/Signup.jsx';
 import Login from './pages/Login/Login.jsx';
 import SingleThought from './pages/SingleThought';
-import Profile from './pages/Profile';
+import DashboardPage from './pages/Dashboard/DashboardPage.jsx';
+import Profile from './pages/Profile/Profile.jsx';
+import EditProfile from './pages/Profile/ProfileEditPage.jsx';
 import Error from './pages/Error';
+import NotFound from "./pages/NotFoundPage.jsx";
+import DiaryPage from "@/pages/Diary/DiaryPage.jsx";
+import ExplorePage from "@/pages/Explore/ExplorePage.jsx";
+import CreatePostPage from "@/pages/Create/CreatePostPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,15 +32,35 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       }, {
+       path: "/dashboard",
+         element: <DashboardPage />
+      }, {
         path: '/me',
         element: <Profile />
       }, {
-        path: '/profiles/:profileId',
+        path: '/profile/edit',
+        element: <EditProfile />
+      },
+      {
+        path: '/create/post',
+        element: <CreatePostPage />
+      }, {
+        path: '/profile/:profileId',
         element: <Profile />
       }, {
         path: '/thoughts/:thoughtId',
         element: <SingleThought />
+      }, {
+        path: '/diary',
+        element: <DiaryPage />
+      }, {
+        path: '/explore',
+        element: <ExplorePage />
+      }, {
+        path: '/*',
+        element: <NotFound />
       }
+
     ]
   }
 ])

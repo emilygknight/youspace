@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import CommentList from '../components/Comments/CommentList';
 import CommentForm from '../components/Comments/CommentForm';
 
-import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
+// import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
 // Import MUI components
 import { Box, Container, Typography, Paper, CircularProgress } from '@mui/material';

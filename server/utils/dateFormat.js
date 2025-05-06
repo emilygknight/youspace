@@ -18,9 +18,9 @@ const addDateSuffix = (date) => {
 };
 
 // function to format a timestamp, accepts the timestamp and an `options` object as parameters
-module.exports = (
-  timestamp,
-  { monthLength = 'short', dateSuffix = true } = {}
+const formatTimestamp = (
+    timestamp,
+    { monthLength = 'short', dateSuffix = true } = {}
 ) => {
   // create month object
   const months = {
@@ -42,14 +42,14 @@ module.exports = (
   const formattedMonth = months[dateObj.getMonth()];
 
   const dayOfMonth = dateSuffix
-    ? addDateSuffix(dateObj.getDate())
-    : dateObj.getDate();
+      ? addDateSuffix(dateObj.getDate())
+      : dateObj.getDate();
 
   const year = dateObj.getFullYear();
   let hour =
-    dateObj.getHours() > 12
-      ? Math.floor(dateObj.getHours() - 12)
-      : dateObj.getHours();
+      dateObj.getHours() > 12
+          ? Math.floor(dateObj.getHours() - 12)
+          : dateObj.getHours();
 
   // if hour is 0 (12:00am), change it to 12
   if (hour === 0) {
@@ -65,3 +65,5 @@ module.exports = (
 
   return formattedTimeStamp;
 };
+
+export default formatTimestamp;

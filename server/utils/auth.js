@@ -1,37 +1,42 @@
-const { GraphQLError } = require('graphql');
-const jwt = require('jsonwebtoken');
+import { GraphQLError } from 'graphql';
+import jwt from 'jsonwebtoken';
 
 const secret = 'mysecretssshhhhhhh';
 const expiration = '2h';
 
-module.exports = {
-  AuthenticationError: new GraphQLError('Could not authenticate user.', {
-    extensions: {
-      code: 'UNAUTHENTICATED',
-    },
-  }),
-  authMiddleware: function ({ req }) {
-    let token = req.body.token || req.query.token || req.headers.authorization;
+export class AuthenticationError extends GraphQLError {
+  constructor(message = 'Could not authenticate user.') {
+    super(message, {
+      extensions: {
+        code: 'UNAUTHENTICATED',
+      },
+    });
+  }
+}
 
-    if (req.headers.authorization) {
-      token = token.split(' ').pop().trim();
-    }
+export const authMiddleware = function ({ req }) {
+  let token = req.body.token || req.query.token || req.headers.authorization;
 
-    if (!token) {
-      return req;
-    }
+  if (req.headers.authorization) {
+    token = token.split(' ').pop().trim();
+  }
 
-    try {
-      const { authenticatedPerson } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = authenticatedPerson;
-    } catch {
-      console.log('Invalid token');
-    }
-
+  if (!token) {
     return req;
-  },
-  signToken: function ({ email, username, _id }) {
-    const payload = { email, username, _id };
-    return jwt.sign({ authenticatedPerson: payload }, secret, { expiresIn: expiration });
-  },
+  }
+
+  try {
+    const { authenticatedPerson } = jwt.verify(token, secret, { maxAge: expiration });
+    req.user = authenticatedPerson;
+  } catch {
+    console.log('Invalid token');
+    throw new AuthenticationError('Invalid or expired token');
+  }
+
+  return req;
+};
+
+export const signToken = function ({ email, username, _id }) {
+  const payload = { email, username, _id };
+  return jwt.sign({ authenticatedPerson: payload }, secret, { expiresIn: expiration });
 };
